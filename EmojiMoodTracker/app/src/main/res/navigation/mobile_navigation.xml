@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/emojiFragment">
+    <fragment
+        android:id="@+id/emojiFragment"
+        android:name="edu.weber.cs.w01113559.emojimoodtracker.EmojiFragment"
+        android:label="fragment_emoji"
+        tools:layout="@layout/fragment_emoji" >
+        <action
+            android:id="@+id/action_emojiFragment_self"
+            app:popUpTo="@id/emojiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="edu.weber.cs.w01113559.emojimoodtracker.GraphFragment"
+        android:label="fragment_graph"
+        tools:layout="@layout/fragment_graph" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="edu.weber.cs.w01113559.emojimoodtracker.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>
