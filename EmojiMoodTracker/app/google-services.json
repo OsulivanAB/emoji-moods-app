@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "223038233139",
+    "project_id": "emoji-mood-tracker",
+    "storage_bucket": "emoji-mood-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223038233139:android:bb52bf2a927c98e8e72146",
+        "android_client_info": {
+          "package_name": "edu.weber.cs.w01113559.emojimoodtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223038233139-fek2jh9gu1jsteglp58egvcm69hs2grr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.weber.cs.w01113559.emojimoodtracker",
+            "certificate_hash": "50691078521d32b48cb2d79c9ab4f9e70e9ff98b"
+          }
+        },
+        {
+          "client_id": "223038233139-jh3puib8mlafis323hq6sdg1g5o7fmbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLWOSfdCKiQrwfmsPuB5BlSFxRwGwMJWc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223038233139-jh3puib8mlafis323hq6sdg1g5o7fmbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
