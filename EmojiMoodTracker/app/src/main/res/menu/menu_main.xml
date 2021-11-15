@@ -5,7 +5,13 @@
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         app:showAsAction="always"
         android:title="@string/settings" />
+    <item
+        android:id="@+id/action_sign_out"
+        android:icon="@drawable/ic_baseline_logout_24"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom"
+        android:title="@string/sign_out" />
 </menu>

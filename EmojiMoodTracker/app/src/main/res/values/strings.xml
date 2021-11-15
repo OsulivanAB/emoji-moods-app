@@ -2,6 +2,16 @@
     <string name="app_name">Emoji Mood Tracker</string>
     <string name="settings">Settings</string>
 
+    <!-- Authentication Strings -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="login">Login</string>
+    <string name="new_here">New Here?&#160;</string>
+    <string name="create_account">Create Account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account">Already have an account?&#160;</string>
+
     <!-- ToDo: Remove all Unused Preference Strings -->
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -18,4 +28,5 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="graph_button">Graph Button</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
