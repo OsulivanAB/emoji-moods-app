@@ -41,7 +41,8 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
-                android:textColor="@color/colorInputText" />
+                android:textColor="@color/colorInputText"
+                android:autofillHints="username" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:passwordToggleContentDescription="password"
-            app:passwordToggleEnabled="true"
+            app:passwordToggleEnabled="false"
             app:passwordToggleTint="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -60,9 +61,10 @@
                 android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:drawablePadding="12dp"
                 android:hint="@string/password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:padding="16dp"
-                android:textColor="@color/colorInputText" />
+                android:textColor="@color/colorInputText"
+                android:autofillHints="password"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -70,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:passwordToggleContentDescription="password"
-            app:passwordToggleEnabled="true"
+            app:passwordToggleEnabled="false"
             app:passwordToggleTint="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -81,16 +83,17 @@
                 android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:drawablePadding="12dp"
                 android:hint="@string/confirm_password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:padding="16dp"
-                android:textColor="@color/colorInputText" />
+                android:textColor="@color/colorInputText"
+                android:autofillHints="password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:text="@string/create_account"
             android:layout_marginTop="50dp"
-            android:id="@+id/btnRegister"
             android:layout_height="60dp"/>
 
         <LinearLayout

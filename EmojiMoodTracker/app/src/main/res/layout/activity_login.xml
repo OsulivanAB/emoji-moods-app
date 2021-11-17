@@ -41,7 +41,8 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
-                android:textColor="@color/colorInputText" />
+                android:textColor="@color/colorInputText"
+                android:autofillHints="username" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -60,24 +61,55 @@
                 android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:drawablePadding="12dp"
                 android:hint="@string/password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:padding="16dp"
-                android:textColor="@color/colorInputText" />
+                android:textColor="@color/colorInputText"
+                android:autofillHints="password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:text="@string/login"
             android:layout_marginTop="50dp"
-            android:id="@+id/btnLogin"
             android:layout_height="60dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/or_login_with"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal">
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/googleButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:buttonSize="icon_only"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/llNewUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:padding="10dp"
             android:layout_gravity="center_horizontal">
             <TextView

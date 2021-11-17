@@ -29,9 +29,14 @@ public class MainActivity extends AppCompatActivity {
         initData();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkIfUserIsLoggedIn();
+    }
+
     private void initData() {
         auth = FirebaseAuth.getInstance();
-        checkIfUserIsLoggedIn();
     }
 
     /**

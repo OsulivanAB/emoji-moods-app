@@ -16,14 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityDashboardBinding;
 
 public class DashboardActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private FirebaseUser user;
 
     private View root;
     private ActivityDashboardBinding binding;
@@ -81,7 +79,6 @@ public class DashboardActivity extends AppCompatActivity {
      */
     private void initData(){
         auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         root = binding.getRoot();
         toolbar = binding.toolbar;
