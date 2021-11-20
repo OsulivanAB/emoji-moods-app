@@ -25,18 +25,13 @@ public class MainActivity extends AppCompatActivity {
         View root = binding.getRoot();
         setContentView(root);
 
-        // Initialize Data
-        initData();
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         checkIfUserIsLoggedIn();
-    }
-
-    private void initData() {
-        auth = FirebaseAuth.getInstance();
     }
 
     /**
