@@ -2,25 +2,22 @@ package edu.weber.cs.w01113559.emojimoodtracker;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.FragmentNavigator;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TableRow;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Objects;
+import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentEmojiBinding;
 
 public class EmojiFragment extends Fragment {
 
-    private View root;
+    private FragmentEmojiBinding binding;
 
     public EmojiFragment() {
         // Required empty public constructor
@@ -29,8 +26,9 @@ public class EmojiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return root = inflater.inflate(R.layout.fragment_emoji, container, false);
+        binding = FragmentEmojiBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        return root;
     }
 
     @Override
@@ -38,9 +36,38 @@ public class EmojiFragment extends Fragment {
         super.onResume();
         FloatingActionButton graphFab = requireActivity().findViewById(R.id.fab);
         graphFab.show();
+
+        // Loop through Rows in the Table
+        for (int i = 0; i < binding.emojiTable.getChildCount(); i++) {
+            if (binding.emojiTable.getChildAt(i) instanceof TableRow) {
+                TableRow row = (TableRow) binding.emojiTable.getChildAt(i);
+                // Loop Through Items in the row
+                for (int j = 0; j < row.getChildCount(); j++) {
+                    if (row.getChildAt(j) instanceof AppCompatImageButton) {
+                        // Analyze the image
+                        AppCompatImageButton image = (AppCompatImageButton) row.getChildAt(j);
+                        image.setOnClickListener(emojiButtonListener);
+                    }
+                }
+            }
+        }
     }
 
-    //ToDo: After an Emoji is pressed, do a snackbar!
-//    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//            .setAction("Action", null).show();
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    /**
+     * Listener for almost all buttons
+     */
+    private View.OnClickListener emojiButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Snackbar.make(binding.getRoot(), "You chose: " + v.getTag().toString() + ".", Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null)
+                    .show();
+        }
+    };
 }
