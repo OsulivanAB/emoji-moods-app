@@ -42,6 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         binding.fab.setOnClickListener(view -> {
             navController.navigate(R.id.graphFragment, null, options);  // Navigate to Graph Page
+            binding.toolbar.setTitle("Mood Summary Graph");
         });
     }
 
@@ -82,6 +83,7 @@ public class DashboardActivity extends AppCompatActivity {
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         root = binding.getRoot();
         toolbar = binding.toolbar;
+        toolbar.setTitle("Record Mood");
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
         assert navHostFragment != null;
         navController = navHostFragment.getNavController();

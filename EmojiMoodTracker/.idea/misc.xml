@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.353125" />
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/drawable/custom_bg_gradient.xml" value="0.19907407407407407" />
+        <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/drawable/emoji_u1f600.xml" value="0.1962962962962963" />
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/drawable/emoji_u1f609.xml" value="0.22135416666666666" />
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/drawable/emoji_u1f60b.xml" value="0.22135416666666666" />
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/drawable/emoji_u1f61b.xml" value="0.22135416666666666" />
@@ -35,6 +36,7 @@
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/layout/fragment_graph.xml" value="0.35260416666666666" />
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/layout/signed_in_layout.xml" value="0.13645833333333332" />
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/xml/pom.xml" value="0.190625" />
         <entry key="..\:/School/Weber/CS3270/emoji-moods-app/EmojiMoodTracker/app/src/main/res/xml/root_preferences.xml" value="0.20520833333333333" />
       </map>
     </option>
