@@ -15,83 +15,77 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TableLayout
+            android:id="@+id/emojiTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical" >
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
 
-            <TableLayout
-                android:id="@+id/emojiTable"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp">
+                android:layout_height="match_parent">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Smiley"
+                    android:src="@drawable/emoji_u1f600" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Smiley"
-                        android:src="@drawable/emoji_u1f600" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Blessed"
+                    android:src="@drawable/emoji_u1f607" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Blessed"
-                        android:src="@drawable/emoji_u1f607" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Horny"
+                    android:src="@drawable/emoji_u1f608" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Horny"
-                        android:src="@drawable/emoji_u1f608" />
+            </TableRow>
 
-                </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Angry"
+                    android:src="@drawable/emoji_u1f621" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Angry"
-                        android:src="@drawable/emoji_u1f621" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Sad"
+                    android:src="@drawable/emoji_u1f625" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Sad"
-                        android:src="@drawable/emoji_u1f625" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Scared"
+                    android:src="@drawable/emoji_u1f631" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Scared"
-                        android:src="@drawable/emoji_u1f631" />
+            </TableRow>
 
-                </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Tired"
+                    android:src="@drawable/emoji_u1f634" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Tired"
-                        android:src="@drawable/emoji_u1f634" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Sick"
+                    android:src="@drawable/emoji_u1f637" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        style="@style/Theme.EmojiMoodTracker.EmojiImage"
-                        android:tag="Sick"
-                        android:src="@drawable/emoji_u1f637" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/Theme.EmojiMoodTracker.EmojiImage"
+                    android:tag="Sick"
+                    android:src="@drawable/emoji_u1f643" />
 
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </TableLayout>
-        </LinearLayout>
+            </TableRow>
+        </TableLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
