@@ -3,15 +3,10 @@ package edu.weber.cs.w01113559.emojimoodtracker.data.model;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import androidx.core.content.ContextCompat;
-
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.time.OffsetDateTime;
 import java.util.Date;
-
-import edu.weber.cs.w01113559.emojimoodtracker.R;
 
 @IgnoreExtraProperties
 public class Record {
@@ -54,7 +49,7 @@ public class Record {
     }
 
     public Record(Drawable emoji, Context context) {
-        this.timestamp = System.currentTimeMillis()/1000;
+        this.timestamp = System.currentTimeMillis();
         this.emojiCode = emojiEncoding.decodeEmoji(emoji, context);
     }
 }

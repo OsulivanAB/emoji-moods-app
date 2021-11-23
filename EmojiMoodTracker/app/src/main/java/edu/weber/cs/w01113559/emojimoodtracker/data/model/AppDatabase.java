@@ -2,17 +2,10 @@ package edu.weber.cs.w01113559.emojimoodtracker.data.model;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -24,7 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class AppDatabase {
 
@@ -34,12 +26,23 @@ public class AppDatabase {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private String userID;
-    private List<Record> recordList;
-    private Settings userSettings;
+    public List<Record> recordList;
+    protected Settings userSettings;
 
     private DatabaseReference databaseReference;    // General Database Reference
     private DatabaseReference mRecordsRef;          // Reference to the records for the user
     private DatabaseReference mUserSettingsRef;        // Refrence to the user settings
+
+    private graphFragInterface mCallback;
+
+    public interface graphFragInterface
+    {
+        void updateChart(List<Record> records);
+    }
+
+    public void setInterface(graphFragInterface reference){
+        mCallback = reference;
+    }
 
     public AppDatabase(Context _context) {
 
@@ -97,6 +100,9 @@ public class AppDatabase {
                 String key = snapshot.getKey();
                 if (record != null) { record.setKey(key); }
                 recordList.add(record);
+                if (mCallback != null) {
+                    mCallback.updateChart(recordList);
+                }
             }
 
             @Override
@@ -111,6 +117,9 @@ public class AppDatabase {
                         recordList.set(recordList.indexOf(r), record);
                         break;
                     }
+                }
+                if (mCallback != null) {
+                    mCallback.updateChart(recordList);
                 }
             }
 
@@ -127,6 +136,9 @@ public class AppDatabase {
                         recordList.remove(r);
                         break;
                     }
+                }
+                if (mCallback != null) {
+                    mCallback.updateChart(recordList);
                 }
             }
 

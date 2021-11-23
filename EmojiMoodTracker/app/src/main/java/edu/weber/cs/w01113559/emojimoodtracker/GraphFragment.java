@@ -1,5 +1,6 @@
 package edu.weber.cs.w01113559.emojimoodtracker;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import androidx.core.util.Pair;
@@ -25,25 +25,39 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.Record;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.emojiEncoding;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentGraphBinding;
 
-public class GraphFragment extends Fragment {
+public class GraphFragment extends Fragment implements AppDatabase.graphFragInterface {
 
     private FragmentGraphBinding binding;
     private PieChart pieChart;
+    private AppDatabase mDatabase;
+    private Context context;
+    private boolean datesUpdateFlag;
+    private AppCompatTextView tvDatePicker;
+    private Date startDateRange;
+    private Date endDateRange;
 
     public GraphFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentGraphBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -59,44 +73,84 @@ public class GraphFragment extends Fragment {
      * Initializes all variables
      */
     private void initData() {
+
+        context = getContext();
+
+        mDatabase = new AppDatabase(getContext());
+        mDatabase.setInterface(this);
+
         pieChart = binding.examplePieChart;
         setupPieChart();
-        loadPieData();
 
-        AppCompatTextView tvDatePicker = binding.tvDateRangePicker;
-        tvDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MaterialDatePicker dateRangePicker =
-                        MaterialDatePicker.Builder.dateRangePicker()
-                        .setTitleText("Select dates")
-                        .setSelection(new Pair<Long, Long>(MaterialDatePicker.thisMonthInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds()))
-                        .build();
+        tvDatePicker = binding.tvDateRangePicker;
 
-                dateRangePicker.show(getParentFragmentManager(), "Date Range Picker");
-            }
+        tvDatePicker.setOnClickListener(view -> {
+
+            MaterialDatePicker<Pair<Long, Long>> dateRangePicker =
+                    MaterialDatePicker.Builder.dateRangePicker()
+                    .setTitleText("Select dates")
+                    .setSelection(new Pair<>(startDateRange.getTime(), endDateRange.getTime()))
+                    .build();
+
+            dateRangePicker.show(getParentFragmentManager(), "Date Range Picker");
+            dateRangePicker.addOnPositiveButtonClickListener(selection -> {
+                startDateRange = new Date(selection.first + 25200000);
+                endDateRange = new Date(selection.second + 25200000);
+                updateDateRange();
+            });
         });
+
+        datesUpdateFlag = false;
     }
 
     private void setupPieChart(){
         pieChart.setDrawHoleEnabled(true);  // Adds a hole in the center (Donut instead of Pie)
-//        pieChart.setUsePercentValues(true); // Let the pie chart know we're passing in percentage values.
-//        pieChart.setEntryLabelTextSize(12f);
-//        pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Mood Summary");     // Puts text in the center of the donut!
         pieChart.setCenterTextSize(24f);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setEnabled(false);
     }
 
-    private void loadPieData(){
+    private void loadPieData() {
+        pieChart.clear();
+
+        Map<String, Integer> scores = new HashMap<>();
+
+        // Loop through record list and count each emoji occurance
+        for (Record record : mDatabase.recordList) {
+
+            // Check if record is within date range
+            Date recordDate = record.getDate();
+            if (recordDate.before(startDateRange) || recordDate.after(endDateRange)) { continue; }
+
+            String emoji = record.getEmojiCode();
+            boolean flag = false;
+
+            // See if they already have a score in the scores map
+            for (Map.Entry<String, Integer> entry : scores.entrySet()) {
+                String key = entry.getKey();
+                if (key.equals(emoji)){
+                    int newScore = entry.getValue() + 1;
+                    entry.setValue(newScore);
+                    flag = true;
+                    break;
+                }
+            }
+
+            // If it wasn't already in there, add it and give it a score of 1
+            if (!flag) {
+                scores.put(emoji, 1);
+            }
+        }
 
         // Create Pie Chart Entries Array
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(1, shrinkEmoji(ContextCompat.getDrawable(getActivity(), R.drawable.emoji_u1f600))));
-        entries.add(new PieEntry(5, shrinkEmoji(ContextCompat.getDrawable(getActivity(), R.drawable.emoji_u1f607))));
-        entries.add(new PieEntry(6, shrinkEmoji(ContextCompat.getDrawable(getActivity(), R.drawable.emoji_u1f608))));
-        entries.add(new PieEntry(3, shrinkEmoji(ContextCompat.getDrawable(getActivity(), R.drawable.emoji_u1f621))));
+
+        // Populate Pie chart entries
+        for (Map.Entry<String, Integer> entry : scores.entrySet()) {
+            Drawable smallerDrawable = shrinkEmoji(emojiEncoding.encodeEmoji(entry.getKey(), context));
+            entries.add(new PieEntry(entry.getValue(), smallerDrawable));
+        }
 
         // Create Pie Chart Colors Array
         ArrayList<Integer> colors = new ArrayList<>();
@@ -127,5 +181,41 @@ public class GraphFragment extends Fragment {
     private Drawable shrinkEmoji(Drawable input_emoji) {
         Bitmap bitmap = ((BitmapDrawable) input_emoji).getBitmap();
         return new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
+    }
+
+    @Override
+    public void updateChart(List<Record> records) {
+        if (!datesUpdateFlag){
+            updateDateRange(records);
+        } else {
+            loadPieData();
+        }
+    }
+
+    private void updateDateRange(List<Record> records) {
+
+        if (startDateRange == null) {
+            startDateRange = records.get(0).getDate();
+            endDateRange = records.get(0).getDate();
+        }
+
+        for (Record record : records) {
+            if (record.getDate().before(startDateRange)) {
+                startDateRange = record.getDate();
+            } else if (record.getDate().after(endDateRange)) {
+                endDateRange = record.getDate();
+            }
+        }
+
+        updateDateRange();
+    }
+
+    private void updateDateRange(){
+        SimpleDateFormat formatDate = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+
+        String newDateString = formatDate.format(startDateRange) + " - " + formatDate.format(endDateRange);
+        tvDatePicker.setText(newDateString);
+
+        loadPieData();
     }
 }
