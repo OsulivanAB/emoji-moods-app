@@ -44,6 +44,10 @@ public class AppDatabase {
         mCallback = reference;
     }
 
+    public void RemoveInterface(){
+        mCallback = null;
+    }
+
     public AppDatabase(Context _context) {
 
         // Initialize Variables

@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.User;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityRegisterBinding;
 
@@ -39,7 +40,11 @@ public class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         // Database
-        mdatabase = new AppDatabase(this);
+
+        if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
+            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(getApplicationContext()));
+        }
+        mdatabase = GlobalAppDatabase.getAppDatabaseInstance();
 
         // Register Button
         binding.btnRegister.setOnClickListener(v -> validateUser());

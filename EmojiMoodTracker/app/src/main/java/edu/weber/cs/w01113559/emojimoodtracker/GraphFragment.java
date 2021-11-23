@@ -36,6 +36,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.Record;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.emojiEncoding;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentGraphBinding;
@@ -72,6 +73,12 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
         initData();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mDatabase.RemoveInterface();
+    }
+
     /**
      * Initializes all variables
      */
@@ -79,7 +86,10 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
         context = getContext();
 
-        mDatabase = new AppDatabase(getContext());
+        if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
+            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(getContext()));
+        }
+        mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
         mDatabase.setInterface(this);
 
         pieChart = binding.examplePieChart;

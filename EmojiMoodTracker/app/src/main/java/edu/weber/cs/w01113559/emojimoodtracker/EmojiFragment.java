@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.Record;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentEmojiBinding;
 
@@ -60,7 +61,10 @@ public class EmojiFragment extends Fragment {
         FloatingActionButton graphFab = requireActivity().findViewById(R.id.fab);
         graphFab.show();
 
-        mDatabase = new AppDatabase(getContext());
+        if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
+            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(getContext()));
+        }
+        mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
     }
 
     @Override
