@@ -2,6 +2,7 @@ package edu.weber.cs.w01113559.emojimoodtracker;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -46,8 +48,9 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
     private Context context;
     private boolean datesUpdateFlag;
     private AppCompatTextView tvDatePicker;
-    private Date startDateRange;
-    private Date endDateRange;
+    private Date startDateRange = new Date(System.currentTimeMillis());
+    private Date endDateRange = new Date(System.currentTimeMillis());
+    private MaterialDatePicker<Pair<Long, Long>> dateRangePicker;
 
     public GraphFragment() {
         // Required empty public constructor
@@ -86,18 +89,20 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
         tvDatePicker.setOnClickListener(view -> {
 
-            MaterialDatePicker<Pair<Long, Long>> dateRangePicker =
-                    MaterialDatePicker.Builder.dateRangePicker()
+            dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText("Select dates")
                     .setSelection(new Pair<>(startDateRange.getTime(), endDateRange.getTime()))
+                    .setTheme(R.style.Theme_EmojiMoodTracker_GraphDatePicker_Dialog)
                     .build();
 
-            dateRangePicker.show(getParentFragmentManager(), "Date Range Picker");
             dateRangePicker.addOnPositiveButtonClickListener(selection -> {
                 startDateRange = new Date(selection.first + 25200000);
-                endDateRange = new Date(selection.second + 25200000);
+                endDateRange = new Date(selection.second);
                 updateDateRange();
+                loadPieData();
             });
+
+            dateRangePicker.show(getParentFragmentManager(), "Date Range Picker");
         });
 
         datesUpdateFlag = false;
@@ -172,50 +177,76 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
         // Start Up Pie Chart
         pieChart.setData(data); // Pass the pie chart the data
-        pieChart.invalidate();  // Tells the pie chart to refresh
+//        pieChart.invalidate();  // Tells the pie chart to refresh
 
         // Add Load Animation
         pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
 
     private Drawable shrinkEmoji(Drawable input_emoji) {
-        Bitmap bitmap = ((BitmapDrawable) input_emoji).getBitmap();
+        Bitmap bitmap = convertToBitmap(input_emoji);
         return new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
+    }
+
+    private Bitmap convertToBitmap(Drawable input) {
+        try {
+            Bitmap bitmap;
+
+            bitmap = Bitmap.createBitmap(input.getIntrinsicWidth(), input.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+
+            Canvas canvas = new Canvas(bitmap);
+            input.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            input.draw(canvas);
+            return bitmap;
+        } catch (OutOfMemoryError e) {
+            throw new OutOfMemoryError("GraphFragment.java/convertToBitmap has encountered an out of memory error.");
+        }
     }
 
     @Override
     public void updateChart(List<Record> records) {
         if (!datesUpdateFlag){
             updateDateRange(records);
-        } else {
-            loadPieData();
         }
+        loadPieData();
     }
 
     private void updateDateRange(List<Record> records) {
 
-        if (startDateRange == null) {
-            startDateRange = records.get(0).getDate();
-            endDateRange = records.get(0).getDate();
-        }
+        boolean changeflag = false;
 
         for (Record record : records) {
             if (record.getDate().before(startDateRange)) {
                 startDateRange = record.getDate();
-            } else if (record.getDate().after(endDateRange)) {
-                endDateRange = record.getDate();
+                changeflag = true;
             }
         }
 
-        updateDateRange();
+        if (changeflag) {
+            updateDateRange();
+        }
     }
 
     private void updateDateRange(){
         SimpleDateFormat formatDate = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 
+        Calendar cal = Calendar.getInstance(); // locale-specific
+        cal.setTime(startDateRange);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        startDateRange = new Date(cal.getTimeInMillis());
+
+        cal.setTime(endDateRange);
+        cal.add(Calendar.DATE, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        endDateRange = new Date(cal.getTimeInMillis());
+
         String newDateString = formatDate.format(startDateRange) + " - " + formatDate.format(endDateRange);
         tvDatePicker.setText(newDateString);
-
-        loadPieData();
     }
 }
