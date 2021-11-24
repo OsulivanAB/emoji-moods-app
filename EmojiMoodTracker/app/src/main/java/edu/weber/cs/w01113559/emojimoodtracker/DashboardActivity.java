@@ -2,6 +2,10 @@ package edu.weber.cs.w01113559.emojimoodtracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -9,8 +13,15 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +29,9 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityDashboardBinding;
+import edu.weber.cs.w01113559.emojimoodtracker.notifications.GlobalNotificationBuilder;
+import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationUtil;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -94,5 +108,6 @@ public class DashboardActivity extends AppCompatActivity {
                 .setPopEnterAnim(R.anim.slide_in_left)
                 .setPopExitAnim(R.anim.slide_out_right)
                 .build();
+        NotificationUtil.createNotification(this);
     }
 }
