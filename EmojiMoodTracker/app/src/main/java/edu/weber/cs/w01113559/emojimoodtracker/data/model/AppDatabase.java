@@ -27,7 +27,7 @@ public class AppDatabase {
     private FirebaseUser currentUser;
     private String userID;
     public List<Record> recordList;
-    protected Settings userSettings;
+    public Settings userSettings;
 
     private DatabaseReference databaseReference;    // General Database Reference
     private DatabaseReference mRecordsRef;          // Reference to the records for the user
@@ -87,9 +87,10 @@ public class AppDatabase {
         databaseReference.child("Users").child(uID).setValue(user);
     }
 
-    public void writeUserSettings(@NonNull List<Drawable> emojis){
-        List<String> emojiList = emojiEncoding.getDecodedEmojiList(context, emojis);
-        Settings _userSettings = new Settings(emojiList);
+    public void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders){
+        userSettings.deleteAlarmsForReminders(context);
+        Settings _userSettings = new Settings(emojis, reminders);
+        _userSettings.scheduleAlarmsForReminders(context);
         mUserSettingsRef.setValue(_userSettings);
     }
 

@@ -48,6 +48,7 @@ ext {
     androidx_test_espresso_core_version = '3.4.0'
     MPAndroidChart_version = 'v3.1.0'
     core_version = '1.6.0'
+    google_code_gson = '2.8.6'
 
 }
 
@@ -82,4 +83,5 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_test_ext_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version"
+    implementation "com.google.code.gson:gson:$google_code_gson"
 }

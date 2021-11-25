@@ -84,7 +84,6 @@
                     style="@style/Theme.EmojiMoodTracker.EmojiImage"
                     android:tag="Sick"
                     android:src="@drawable/emoji_u1f643" />
-
             </TableRow>
         </TableLayout>
     </ScrollView>

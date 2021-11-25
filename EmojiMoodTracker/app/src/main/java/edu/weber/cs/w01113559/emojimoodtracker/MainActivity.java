@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
+    // Global Variables
+    public static final String KEY_ID = "id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

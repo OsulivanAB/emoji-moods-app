@@ -74,6 +74,12 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateChart(mDatabase.recordList);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         mDatabase.RemoveInterface();
@@ -87,12 +93,12 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
         context = getContext();
 
         if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
-            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(getContext()));
+            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(context));
         }
         mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
         mDatabase.setInterface(this);
 
-        pieChart = binding.examplePieChart;
+        pieChart = binding.chart;
         setupPieChart();
 
         tvDatePicker = binding.tvDateRangePicker;

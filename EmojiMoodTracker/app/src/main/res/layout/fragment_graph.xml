@@ -14,14 +14,14 @@
         android:layout_marginTop="8dp"
         android:drawableEnd="@drawable/ic_baseline_edit_24"
         android:drawablePadding="16dp"
-        android:gravity="left"
-        android:text="[Start Date] - [End Date]"
+        android:gravity="start"
+        android:text="@string/tvDateRangePicker_default"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/example_pie_chart"/>
+        app:layout_constraintBottom_toTopOf="@id/chart"/>
 
     <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/example_pie_chart"
+        android:id="@+id/chart"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

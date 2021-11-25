@@ -2,10 +2,6 @@ package edu.weber.cs.w01113559.emojimoodtracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.app.TaskStackBuilder;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -13,24 +9,23 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.ReminderData;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.Settings;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityDashboardBinding;
-import edu.weber.cs.w01113559.emojimoodtracker.notifications.GlobalNotificationBuilder;
-import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.NotificationDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationUtil;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -58,6 +53,10 @@ public class DashboardActivity extends AppCompatActivity {
             navController.navigate(R.id.graphFragment, null, options);  // Navigate to Graph Page
             binding.toolbar.setTitle("Mood Summary Graph");
         });
+        // Create Notification channel if it doesn't already exist
+        NotificationUtil.createNotificationChannel(
+                getApplicationContext(),
+                NotificationDatabase.getDontForgetToRecordReminderData());
     }
 
     @Override
@@ -108,6 +107,9 @@ public class DashboardActivity extends AppCompatActivity {
                 .setPopEnterAnim(R.anim.slide_in_left)
                 .setPopExitAnim(R.anim.slide_out_right)
                 .build();
-        NotificationUtil.createNotification(this);
+
+        if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
+            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(getApplicationContext()));
+        }
     }
 }

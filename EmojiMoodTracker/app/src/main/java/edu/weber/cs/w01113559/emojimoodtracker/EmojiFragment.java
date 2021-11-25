@@ -16,27 +16,19 @@ import android.widget.TableRow;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.Record;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentEmojiBinding;
+import edu.weber.cs.w01113559.emojimoodtracker.data.model.ReminderData;
 
 public class EmojiFragment extends Fragment {
 
     private final String TAG = "emoji-mood-tracker";
     private FragmentEmojiBinding binding;
-    private AppDatabase mDatabase;
 
     public EmojiFragment() {
         // Required empty public constructor
@@ -60,16 +52,12 @@ public class EmojiFragment extends Fragment {
         // Show FAB
         FloatingActionButton graphFab = requireActivity().findViewById(R.id.fab);
         graphFab.show();
-
-        if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
-            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(getContext()));
-        }
-        mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
 
         // ToDo: This should be in a "Populate page" function
         // Loop through Rows in the Table

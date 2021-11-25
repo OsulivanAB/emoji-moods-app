@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Emoji Mood Tracker</string>
     <string name="settings">Settings</string>
+    <string name="action_notify_update_mood">du.weber.cs.w01113559.emojimoodtracker.action.notify_update_mood</string>
 
     <!-- Authentication Strings -->
     <string name="email">Email</string>
@@ -31,4 +32,10 @@
     <string name="sign_out">Sign Out</string>
     <string name="def_web_client">169942334159-8k1u1ckgng0g6s4tltbf84bnvlmomaua.apps.googleusercontent.com</string>
     <string name="or_login_with">Or login with...</string>
+    <string name="channel_reminder_1">channel_reminder_1</string>
+    <string name="channel_1_name">Update Mood Reminder</string>
+    <string name="channel_1_description">Notifications to remind you to update your mood</string>
+    <string name="notification_1_Title">Don\'t forget to…</string>
+    <string name="notification_1_Text">Update your mood!</string>
+    <string name="tvDateRangePicker_default">[Start Date] - [End Date]</string>
 </resources>

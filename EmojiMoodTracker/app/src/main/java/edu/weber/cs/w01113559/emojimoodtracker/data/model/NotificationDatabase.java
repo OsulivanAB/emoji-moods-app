@@ -1,9 +1,11 @@
-package edu.weber.cs.w01113559.emojimoodtracker.notifications;
+package edu.weber.cs.w01113559.emojimoodtracker.data.model;
 
 import android.app.NotificationManager;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+
+import edu.weber.cs.w01113559.emojimoodtracker.R;
 
 public final class NotificationDatabase {
 
@@ -37,17 +39,17 @@ public final class NotificationDatabase {
 
             // Standard Notification values:
             // Title for API <16 (4.0 and below) devices.
-            mContentTitle = "Don't forget to...";
+            mContentTitle = String.valueOf(R.string.notification_1_Title);
             // Content for API <24 (4.0 and below) devices.
-            mContentText = "Update your mood!";
+            mContentText = String.valueOf(R.string.notification_1_Text);
             mPriority = NotificationCompat.PRIORITY_DEFAULT;
 
             // Notification channel values (for devices targeting 26 and above)
-            mChannelId = "channel_reminder_1";
+            mChannelId = String.valueOf(R.string.channel_reminder_1);
             // User-visible name of the channel.
-            mChannelName = "Update Mood Reminder";
+            mChannelName = String.valueOf(R.string.channel_1_name);
             // User-visible description of channel.
-            mChannelDescription = "Notifications to remind you to update your mood";
+            mChannelDescription = String.valueOf(R.string.channel_1_description);
             mChannelImportance = NotificationManager.IMPORTANCE_DEFAULT;
             mChannelEnableVibrate = true;
             mChannelLockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC;
