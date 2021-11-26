@@ -20,6 +20,7 @@ import java.util.List;
 
 public class AppDatabase {
 
+    //region Variables
     private final String TAG = "emoji-mood-tracker";
 
     private Context context;
@@ -34,9 +35,10 @@ public class AppDatabase {
     private DatabaseReference mUserSettingsRef;        // Refrence to the user settings
 
     private graphFragInterface mCallback;
+    //endregion
 
-    public interface graphFragInterface
-    {
+    //region Interface
+    public interface graphFragInterface {
         void updateChart(List<Record> records);
     }
 
@@ -47,7 +49,9 @@ public class AppDatabase {
     public void RemoveInterface(){
         mCallback = null;
     }
+    //endregion
 
+    //region Constructors
     public AppDatabase(Context _context) {
 
         // Initialize Variables
@@ -63,37 +67,23 @@ public class AppDatabase {
         userSettingsEventListener();
         addRecordsEventListener();
     }
+    //endregion
 
-    /**
-     * Add a record for the current user into the database.
-     * @param emoji Drawable: emoji to store in record.
-     */
-    public void writeRecord(@NonNull Drawable emoji) {
-        // ToDo: Check if there was a recent record created.
-        // Create new record at /records/$userid/$recordid
-        Record record = new Record(emoji, context);
-        mRecordsRef.push().setValue(record);
+    //region Getters
+    public String getUserID() {
+        return userID;
     }
 
-    /**
-     * Add a new user record to the database.
-     * @param uID String: user ID provided by Firebase Authentication.
-     * @param email String: user email used to log in.
-     */
-    public void writeNewUser(@NonNull String uID, @NonNull String email) {
-        // 1 - Create User
-        // 2 - Save User in /Users/$userid/
-        User user = new User("Anthony.R.Bahl@Gmail.com");
-        databaseReference.child("Users").child(uID).setValue(user);
+    public List<Record> getRecordList() {
+        return recordList;
     }
 
-    public void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders){
-        userSettings.deleteAlarmsForReminders(context);
-        Settings _userSettings = new Settings(emojis, reminders);
-        _userSettings.scheduleAlarmsForReminders(context);
-        mUserSettingsRef.setValue(_userSettings);
+    public Settings getUserSettings() {
+        return userSettings;
     }
+    //endregion
 
+    //region Event Listeners
     /**
      * Gets record list from database and assigns it to recordList. Listens for updates.
      */
@@ -172,4 +162,37 @@ public class AppDatabase {
             }
         });
     }
+    //endregion
+
+    //region Writers
+    /**
+     * Add a record for the current user into the database.
+     * @param emoji Drawable: emoji to store in record.
+     */
+    public void writeRecord(@NonNull Drawable emoji) {
+        // ToDo: Check if there was a recent record created.
+        // Create new record at /records/$userid/$recordid
+        Record record = new Record(emoji, context);
+        mRecordsRef.push().setValue(record);
+    }
+
+    /**
+     * Add a new user record to the database.
+     * @param uID String: user ID provided by Firebase Authentication.
+     * @param email String: user email used to log in.
+     */
+    public void writeNewUser(@NonNull String uID, @NonNull String email) {
+        // 1 - Create User
+        // 2 - Save User in /Users/$userid/
+        User user = new User("Anthony.R.Bahl@Gmail.com");
+        databaseReference.child("Users").child(uID).setValue(user);
+    }
+
+    public void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders){
+        userSettings.deleteAlarmsForReminders(context);
+        Settings _userSettings = new Settings(emojis, reminders);
+        _userSettings.scheduleAlarmsForReminders(context);
+        mUserSettingsRef.setValue(_userSettings);
+    }
+    //endregion
 }
