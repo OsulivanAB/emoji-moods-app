@@ -25,7 +25,7 @@ import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.ReminderData;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.Settings;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityDashboardBinding;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.NotificationDatabase;
+import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationUtil;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class DashboardActivity extends AppCompatActivity {
         // Create Notification channel if it doesn't already exist
         NotificationUtil.createNotificationChannel(
                 getApplicationContext(),
-                NotificationDatabase.getDontForgetToRecordReminderData());
+                NotificationDatabase.getDontForgetToRecordReminderData(getApplicationContext()));
     }
 
     @Override

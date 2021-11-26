@@ -28,11 +28,11 @@ public class AppDatabase {
     private FirebaseUser currentUser;
     private String userID;
     public List<Record> recordList;
-    public Settings userSettings;
+    public static Settings userSettings;
 
-    private DatabaseReference databaseReference;    // General Database Reference
-    private DatabaseReference mRecordsRef;          // Reference to the records for the user
-    private DatabaseReference mUserSettingsRef;        // Refrence to the user settings
+    private static DatabaseReference databaseReference;    // General Database Reference
+    private static DatabaseReference mRecordsRef;          // Reference to the records for the user
+    private static DatabaseReference mUserSettingsRef;        // Refrence to the user settings
 
     private graphFragInterface mCallback;
     //endregion
@@ -59,9 +59,9 @@ public class AppDatabase {
         this.mAuth = FirebaseAuth.getInstance();
         this.currentUser = mAuth.getCurrentUser();
         this.userID = currentUser != null ? currentUser.getUid() : null;
-        this.databaseReference = FirebaseDatabase.getInstance().getReference();
-        this.mRecordsRef = databaseReference.child("Records").child(userID);
-        this.mUserSettingsRef = databaseReference.child("Settings").child(userID);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        mRecordsRef = databaseReference.child("Records").child(userID);
+        mUserSettingsRef = databaseReference.child("Settings").child(userID);
         recordList = new ArrayList<>();
 
         userSettingsEventListener();
@@ -188,7 +188,7 @@ public class AppDatabase {
         databaseReference.child("Users").child(uID).setValue(user);
     }
 
-    public void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders){
+    public static void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders){
         userSettings.deleteAlarmsForReminders(context);
         Settings _userSettings = new Settings(emojis, reminders);
         _userSettings.scheduleAlarmsForReminders(context);

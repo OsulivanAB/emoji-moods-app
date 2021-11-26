@@ -22,7 +22,6 @@ import java.util.Locale;
 
 import edu.weber.cs.w01113559.emojimoodtracker.MainActivity;
 import edu.weber.cs.w01113559.emojimoodtracker.R;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.NotificationDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.ReminderData;
 
 public class NotificationUtil {
@@ -120,7 +119,7 @@ public class NotificationUtil {
      */
     private static PendingIntent createPendingIntent(Context context, @NonNull ReminderData reminderData, String day) {
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.setAction(String.valueOf(R.string.action_notify_update_mood));
+        intent.setAction(context.getString(R.string.action_notify_update_mood));
         intent.setType(day + reminderData.getID());
         intent.putExtra(MainActivity.KEY_ID, reminderData.getID());
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
