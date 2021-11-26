@@ -1,6 +1,7 @@
-package edu.weber.cs.w01113559.emojimoodtracker.data.model;
+package edu.weber.cs.w01113559.emojimoodtracker.notifications;
 
 import android.app.NotificationManager;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -9,8 +10,8 @@ import edu.weber.cs.w01113559.emojimoodtracker.R;
 
 public final class NotificationDatabase {
 
-    public static DontForgetToRecordReminderData getDontForgetToRecordReminderData() {
-        return DontForgetToRecordReminderData.getInstance();
+    public static DontForgetToRecordReminderData getDontForgetToRecordReminderData(Context context) {
+        return DontForgetToRecordReminderData.getInstance(context);
     }
 
     /**
@@ -20,36 +21,36 @@ public final class NotificationDatabase {
 
         private static DontForgetToRecordReminderData sInstance = null;
 
-        public static DontForgetToRecordReminderData getInstance() {
+        public static DontForgetToRecordReminderData getInstance(Context context) {
             if (sInstance == null) {
-                sInstance = getSync();
+                sInstance = getSync(context);
             }
             return sInstance;
         }
 
-        private static synchronized DontForgetToRecordReminderData getSync() {
+        private static synchronized DontForgetToRecordReminderData getSync(Context context) {
             if (sInstance == null) {
-                sInstance = new DontForgetToRecordReminderData();
+                sInstance = new DontForgetToRecordReminderData(context);
             }
 
             return sInstance;
         }
 
-        private DontForgetToRecordReminderData() {
+        private DontForgetToRecordReminderData(Context context) {
 
             // Standard Notification values:
             // Title for API <16 (4.0 and below) devices.
-            mContentTitle = String.valueOf(R.string.notification_1_Title);
+            mContentTitle = context.getString(R.string.notification_1_Title);
             // Content for API <24 (4.0 and below) devices.
-            mContentText = String.valueOf(R.string.notification_1_Text);
+            mContentText = context.getString(R.string.notification_1_Text);
             mPriority = NotificationCompat.PRIORITY_DEFAULT;
 
             // Notification channel values (for devices targeting 26 and above)
-            mChannelId = String.valueOf(R.string.channel_reminder_1);
+            mChannelId = context.getString(R.string.channel_reminder_1);
             // User-visible name of the channel.
-            mChannelName = String.valueOf(R.string.channel_1_name);
+            mChannelName = context.getString(R.string.channel_1_name);
             // User-visible description of channel.
-            mChannelDescription = String.valueOf(R.string.channel_1_description);
+            mChannelDescription = context.getString(R.string.channel_1_description);
             mChannelImportance = NotificationManager.IMPORTANCE_DEFAULT;
             mChannelEnableVibrate = true;
             mChannelLockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC;
