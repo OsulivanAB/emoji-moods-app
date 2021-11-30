@@ -3,6 +3,7 @@ package edu.weber.cs.w01113559.emojimoodtracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
@@ -23,6 +24,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import edu.weber.cs.w01113559.emojimoodtracker.Settings.DeleteDataDialog;
 import edu.weber.cs.w01113559.emojimoodtracker.Settings.MainSettingsFragment;
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityDashboardBinding;
@@ -107,6 +109,10 @@ public class DashboardActivity extends AppCompatActivity implements
                 return true;
             case "removeNotification":
                 // ToDo: handle Remove Notification Click
+                return true;
+            case "clearData":
+                DialogFragment clearDataDialog = new DeleteDataDialog();
+                clearDataDialog.show(getSupportFragmentManager(), "clearDataDialog");
                 return true;
         }
         return false;

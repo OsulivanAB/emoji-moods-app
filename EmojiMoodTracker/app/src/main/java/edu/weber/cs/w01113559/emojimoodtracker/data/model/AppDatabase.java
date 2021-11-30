@@ -177,6 +177,13 @@ public class AppDatabase {
     }
 
     /**
+     * Clears all Records for the current user.
+     */
+    public void removeAllRecords(){
+        mRecordsRef.removeValue();
+    }
+
+    /**
      * Add a new user record to the database.
      * @param uID String: user ID provided by Firebase Authentication.
      * @param email String: user email used to log in.

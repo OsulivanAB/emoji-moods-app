@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Emoji Mood Tracker</string>
     <string name="settings">Settings</string>
     <string name="action_notify_update_mood">du.weber.cs.w01113559.emojimoodtracker.action.notify_update_mood</string>
@@ -30,12 +30,20 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="graph_button">Graph Button</string>
     <string name="sign_out">Sign Out</string>
-    <string name="def_web_client">169942334159-8k1u1ckgng0g6s4tltbf84bnvlmomaua.apps.googleusercontent.com</string>
-    <string name="or_login_with">Or login with...</string>
-    <string name="channel_reminder_1">channel_reminder_1</string>
+    <string name="def_web_client" tools:ignore="TypographyDashes">169942334159-8k1u1ckgng0g6s4tltbf84bnvlmomaua.apps.googleusercontent.com</string>
+    <string name="or_login_with">Or login with…</string>
+    <string name="channel_reminder_1" tools:ignore="Typos">channel_reminder_1</string>
     <string name="channel_1_name">Update Mood Reminder</string>
     <string name="channel_1_description">Notifications to remind you to update your mood</string>
     <string name="notification_1_Title">Don\'t forget to…</string>
     <string name="notification_1_Text">Update your mood!</string>
     <string name="tvDateRangePicker_default">[Start Date] - [End Date]</string>
+    <string name="customize_emojis">Customize Emojis</string>
+    <string name="notifications">Notifications</string>
+    <string name="enable_notification_reminders">Enable Notification Reminders</string>
+    <string name="schedule_reminder">Schedule Reminder</string>
+    <string name="data">Data</string>
+    <string name="manage_notifications">Manage Notifications</string>
+    <string name="remove_reminder">Remove Reminder</string>
+    <string name="customization">Customization</string>
 </resources>

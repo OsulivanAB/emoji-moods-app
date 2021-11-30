@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Reply Preference -->
     <string-array name="reply_entries">
         <item>Reply</item>
@@ -19,4 +19,429 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
+
+    <string-array name="graph_types">
+        <item>Pie</item>
+        <item>Bar</item>
+        <item>Line</item>
+    </string-array>
+
+    <!-- Emoji multi-dimensional Array -->
+        <!-- Hex Codes -->
+        <string-array name="emoji_hex_codes">
+            <item>1f600</item>
+            <item>1f601</item>
+            <item>1f602</item>
+            <item>1f603</item>
+            <item>1f604</item>
+            <item>1f605</item>
+            <item>1f606</item>
+            <item>1f607</item>
+            <item>1f608</item>
+            <item>1f609</item>
+            <item>1f60a</item>
+            <item>1f60b</item>
+            <item>1f60c</item>
+            <item>1f60d</item>
+            <item>1f60e</item>
+            <item>1f60f</item>
+            <item>1f610</item>
+            <item>1f611</item>
+            <item>1f612</item>
+            <item>1f613</item>
+            <item>1f614</item>
+            <item>1f615</item>
+            <item>1f616</item>
+            <item>1f617</item>
+            <item>1f618</item>
+            <item>1f619</item>
+            <item>1f61a</item>
+            <item>1f61b</item>
+            <item>1f61c</item>
+            <item>1f61d</item>
+            <item>1f61e</item>
+            <item>1f61f</item>
+            <item>1f620</item>
+            <item>1f621</item>
+            <item>1f622</item>
+            <item>1f623</item>
+            <item>1f624</item>
+            <item>1f625</item>
+            <item>1f626</item>
+            <item>1f627</item>
+            <item>1f628</item>
+            <item>1f629</item>
+            <item>1f62a</item>
+            <item>1f62b</item>
+            <item>1f62c</item>
+            <item>1f62d</item>
+            <item>1f62e</item>
+            <item>1f62f</item>
+            <item>1f630</item>
+            <item>1f631</item>
+            <item>1f632</item>
+            <item>1f633</item>
+            <item>1f634</item>
+            <item>1f635</item>
+            <item>1f636</item>
+            <item>1f637</item>
+            <item>1f641</item>
+            <item>1f642</item>
+            <item>1f643</item>
+            <item>1f644</item>
+            <item>1f910</item>
+            <item>1f911</item>
+            <item>1f912</item>
+            <item>1f913</item>
+            <item>1f914</item>
+            <item>1f915</item>
+            <item>1f917</item>
+            <item>1f920</item>
+            <item>1f922</item>
+            <item>1f923</item>
+            <item>1f924</item>
+            <item>1f925</item>
+            <item>1f927</item>
+            <item>1f928</item>
+            <item>1f929</item>
+            <item>1f92a</item>
+            <item>1f92c</item>
+            <item>1f92d</item>
+            <item>1f92e</item>
+            <item>1f92f</item>
+            <item>1f970</item>
+            <item>1f971</item>
+            <item>1f972</item>
+            <item>1f973</item>
+            <item>1f974</item>
+            <item>1f975</item>
+            <item>1f976</item>
+            <item>1f978</item>
+            <item>1f979</item>
+            <item>1f97a</item>
+            <item>1fae0</item>
+            <item tools:ignore="Typos">1fae1</item>
+            <item>1fae2</item>
+            <item>1fae3</item>
+            <item>1fae4</item>
+            <item>1f636_200d_1f32b</item>
+            <item>1f62e_200d_1f4a8</item>
+            <item>1f635_200d_1f4ab</item>
+        </string-array>
+        <!-- Unicode -->
+        <string-array name="emoji_unicode">
+            <item tools:ignore="Typos">\uD83D\uDE00</item>
+            <item tools:ignore="Typos">\uD83D\uDE01</item>
+            <item tools:ignore="Typos">\uD83D\uDE02</item>
+            <item tools:ignore="Typos">\uD83D\uDE03</item>
+            <item tools:ignore="Typos">\uD83D\uDE04</item>
+            <item tools:ignore="Typos">\uD83D\uDE05</item>
+            <item tools:ignore="Typos">\uD83D\uDE06</item>
+            <item tools:ignore="Typos">\uD83D\uDE07</item>
+            <item tools:ignore="Typos">\uD83D\uDE08</item>
+            <item tools:ignore="Typos">\uD83D\uDE09</item>
+            <item tools:ignore="Typos">\uD83D\uDE0A</item>
+            <item tools:ignore="Typos">\uD83D\uDE0B</item>
+            <item tools:ignore="Typos">\uD83D\uDE0C</item>
+            <item tools:ignore="Typos">\uD83D\uDE0D</item>
+            <item tools:ignore="Typos">\uD83D\uDE0E</item>
+            <item tools:ignore="Typos">\uD83D\uDE0F</item>
+            <item tools:ignore="Typos">\uD83D\uDE10</item>
+            <item tools:ignore="Typos">\uD83D\uDE11</item>
+            <item tools:ignore="Typos">\uD83D\uDE12</item>
+            <item tools:ignore="Typos">\uD83D\uDE13</item>
+            <item tools:ignore="Typos">\uD83D\uDE14</item>
+            <item tools:ignore="Typos">\uD83D\uDE15</item>
+            <item tools:ignore="Typos">\uD83D\uDE16</item>
+            <item tools:ignore="Typos">\uD83D\uDE17</item>
+            <item tools:ignore="Typos">\uD83D\uDE18</item>
+            <item tools:ignore="Typos">\uD83D\uDE19</item>
+            <item tools:ignore="Typos">\uD83D\uDE1A</item>
+            <item tools:ignore="Typos">\uD83D\uDE1B</item>
+            <item tools:ignore="Typos">\uD83D\uDE1C</item>
+            <item tools:ignore="Typos">\uD83D\uDE1D</item>
+            <item tools:ignore="Typos">\uD83D\uDE1E</item>
+            <item tools:ignore="Typos">\uD83D\uDE1F</item>
+            <item tools:ignore="Typos">\uD83D\uDE20</item>
+            <item tools:ignore="Typos">\uD83D\uDE21</item>
+            <item tools:ignore="Typos">\uD83D\uDE22</item>
+            <item tools:ignore="Typos">\uD83D\uDE23</item>
+            <item tools:ignore="Typos">\uD83D\uDE24</item>
+            <item tools:ignore="Typos">\uD83D\uDE25</item>
+            <item tools:ignore="Typos">\uD83D\uDE26</item>
+            <item tools:ignore="Typos">\uD83D\uDE27</item>
+            <item tools:ignore="Typos">\uD83D\uDE28</item>
+            <item tools:ignore="Typos">\uD83D\uDE29</item>
+            <item tools:ignore="Typos">\uD83D\uDE2A</item>
+            <item tools:ignore="Typos">\uD83D\uDE2B</item>
+            <item tools:ignore="Typos">\uD83D\uDE2C</item>
+            <item tools:ignore="Typos">\uD83D\uDE2D</item>
+            <item tools:ignore="Typos">\uD83D\uDE2E</item>
+            <item tools:ignore="Typos">\uD83D\uDE2F</item>
+            <item tools:ignore="Typos">\uD83D\uDE30</item>
+            <item tools:ignore="Typos">\uD83D\uDE31</item>
+            <item tools:ignore="Typos">\uD83D\uDE32</item>
+            <item tools:ignore="Typos">\uD83D\uDE33</item>
+            <item tools:ignore="Typos">\uD83D\uDE34</item>
+            <item tools:ignore="Typos">\uD83D\uDE35</item>
+            <item tools:ignore="Typos">\uD83D\uDE36</item>
+            <item tools:ignore="Typos">\uD83D\uDE37</item>
+            <item tools:ignore="Typos">\uD83D\uDE41</item>
+            <item tools:ignore="Typos">\uD83D\uDE42</item>
+            <item tools:ignore="Typos">\uD83D\uDE43</item>
+            <item tools:ignore="Typos">\uD83D\uDE44</item>
+            <item tools:ignore="Typos">\uD83E\uDD10</item>
+            <item tools:ignore="Typos">\uD83E\uDD11</item>
+            <item tools:ignore="Typos">\uD83E\uDD12</item>
+            <item tools:ignore="Typos">\uD83E\uDD13</item>
+            <item tools:ignore="Typos">\uD83E\uDD14</item>
+            <item tools:ignore="Typos">\uD83E\uDD15</item>
+            <item tools:ignore="Typos">\uD83E\uDD17</item>
+            <item tools:ignore="Typos">\uD83E\uDD20</item>
+            <item tools:ignore="Typos">\uD83E\uDD22</item>
+            <item tools:ignore="Typos">\uD83E\uDD23</item>
+            <item tools:ignore="Typos">\uD83E\uDD24</item>
+            <item tools:ignore="Typos">\uD83E\uDD25</item>
+            <item tools:ignore="Typos">\uD83E\uDD27</item>
+            <item tools:ignore="Typos">\uD83E\uDD28</item>
+            <item tools:ignore="Typos">\uD83E\uDD29</item>
+            <item tools:ignore="Typos">\uD83E\uDD2A</item>
+            <item tools:ignore="Typos">\uD83E\uDD2C</item>
+            <item tools:ignore="Typos">\uD83E\uDD2D</item>
+            <item tools:ignore="Typos">\uD83E\uDD2E</item>
+            <item tools:ignore="Typos">\uD83E\uDD2F</item>
+            <item tools:ignore="Typos">\uD83E\uDD70</item>
+            <item tools:ignore="Typos">\uD83E\uDD71</item>
+            <item tools:ignore="Typos">\uD83E\uDD72</item>
+            <item tools:ignore="Typos">\uD83E\uDD73</item>
+            <item tools:ignore="Typos">\uD83E\uDD74</item>
+            <item tools:ignore="Typos">\uD83E\uDD75</item>
+            <item tools:ignore="Typos">\uD83E\uDD76</item>
+            <item tools:ignore="Typos">\uD83E\uDD78</item>
+            <item tools:ignore="Typos">\uD83E\uDD79</item>
+            <item tools:ignore="Typos">\uD83E\uDD7A</item>
+            <item tools:ignore="Typos">\uD83E\uDEE0</item>
+            <item tools:ignore="Typos">\uD83E\uDEE1</item>
+            <item tools:ignore="Typos">\uD83E\uDEE2</item>
+            <item tools:ignore="Typos">\uD83E\uDEE3</item>
+            <item tools:ignore="Typos">\uD83E\uDEE4</item>
+            <item tools:ignore="Typos">\uD83D\uDE36\u200D\uD83C\uDF2B</item>
+            <item tools:ignore="Typos">\uD83D\uDE2E\u200D\uD83D\uDCA8</item>
+            <item tools:ignore="Typos">\uD83D\uDE35\u200D\uD83D\uDCAB</item>
+        </string-array>
+        <!-- Drawable Resource Codes -->
+        <integer-array name="emoji_drawable_resource_ids">
+            <item>@drawable/emoji_u1f600</item>
+            <item>@drawable/emoji_u1f601</item>
+            <item>@drawable/emoji_u1f602</item>
+            <item>@drawable/emoji_u1f603</item>
+            <item>@drawable/emoji_u1f604</item>
+            <item>@drawable/emoji_u1f605</item>
+            <item>@drawable/emoji_u1f606</item>
+            <item>@drawable/emoji_u1f607</item>
+            <item>@drawable/emoji_u1f608</item>
+            <item>@drawable/emoji_u1f609</item>
+            <item>@drawable/emoji_u1f60a</item>
+            <item>@drawable/emoji_u1f60b</item>
+            <item>@drawable/emoji_u1f60c</item>
+            <item>@drawable/emoji_u1f60d</item>
+            <item>@drawable/emoji_u1f60e</item>
+            <item>@drawable/emoji_u1f60f</item>
+            <item>@drawable/emoji_u1f610</item>
+            <item>@drawable/emoji_u1f611</item>
+            <item>@drawable/emoji_u1f612</item>
+            <item>@drawable/emoji_u1f613</item>
+            <item>@drawable/emoji_u1f614</item>
+            <item>@drawable/emoji_u1f615</item>
+            <item>@drawable/emoji_u1f616</item>
+            <item>@drawable/emoji_u1f617</item>
+            <item>@drawable/emoji_u1f618</item>
+            <item>@drawable/emoji_u1f619</item>
+            <item>@drawable/emoji_u1f61a</item>
+            <item>@drawable/emoji_u1f61b</item>
+            <item>@drawable/emoji_u1f61c</item>
+            <item>@drawable/emoji_u1f61d</item>
+            <item>@drawable/emoji_u1f61e</item>
+            <item>@drawable/emoji_u1f61f</item>
+            <item>@drawable/emoji_u1f620</item>
+            <item>@drawable/emoji_u1f621</item>
+            <item>@drawable/emoji_u1f622</item>
+            <item>@drawable/emoji_u1f623</item>
+            <item>@drawable/emoji_u1f624</item>
+            <item>@drawable/emoji_u1f625</item>
+            <item>@drawable/emoji_u1f626</item>
+            <item>@drawable/emoji_u1f627</item>
+            <item>@drawable/emoji_u1f628</item>
+            <item>@drawable/emoji_u1f629</item>
+            <item>@drawable/emoji_u1f62a</item>
+            <item>@drawable/emoji_u1f62b</item>
+            <item>@drawable/emoji_u1f62c</item>
+            <item>@drawable/emoji_u1f62d</item>
+            <item>@drawable/emoji_u1f62e</item>
+            <item>@drawable/emoji_u1f62f</item>
+            <item>@drawable/emoji_u1f630</item>
+            <item>@drawable/emoji_u1f631</item>
+            <item>@drawable/emoji_u1f632</item>
+            <item>@drawable/emoji_u1f633</item>
+            <item>@drawable/emoji_u1f634</item>
+            <item>@drawable/emoji_u1f635</item>
+            <item>@drawable/emoji_u1f636</item>
+            <item>@drawable/emoji_u1f637</item>
+            <item>@drawable/emoji_u1f641</item>
+            <item>@drawable/emoji_u1f642</item>
+            <item>@drawable/emoji_u1f643</item>
+            <item>@drawable/emoji_u1f644</item>
+            <item>@drawable/emoji_u1f910</item>
+            <item>@drawable/emoji_u1f911</item>
+            <item>@drawable/emoji_u1f912</item>
+            <item>@drawable/emoji_u1f913</item>
+            <item>@drawable/emoji_u1f914</item>
+            <item>@drawable/emoji_u1f915</item>
+            <item>@drawable/emoji_u1f917</item>
+            <item>@drawable/emoji_u1f920</item>
+            <item>@drawable/emoji_u1f922</item>
+            <item>@drawable/emoji_u1f923</item>
+            <item>@drawable/emoji_u1f924</item>
+            <item>@drawable/emoji_u1f925</item>
+            <item>@drawable/emoji_u1f927</item>
+            <item>@drawable/emoji_u1f928</item>
+            <item>@drawable/emoji_u1f929</item>
+            <item>@drawable/emoji_u1f92a</item>
+            <item>@drawable/emoji_u1f92c</item>
+            <item>@drawable/emoji_u1f92d</item>
+            <item>@drawable/emoji_u1f92e</item>
+            <item>@drawable/emoji_u1f92f</item>
+            <item>@drawable/emoji_u1f970</item>
+            <item>@drawable/emoji_u1f971</item>
+            <item>@drawable/emoji_u1f972</item>
+            <item>@drawable/emoji_u1f973</item>
+            <item>@drawable/emoji_u1f974</item>
+            <item>@drawable/emoji_u1f975</item>
+            <item>@drawable/emoji_u1f976</item>
+            <item>@drawable/emoji_u1f978</item>
+            <item>@drawable/emoji_u1f979</item>
+            <item>@drawable/emoji_u1f97a</item>
+            <item>@drawable/emoji_u1fae0</item>
+            <item>@drawable/emoji_u1fae1</item>
+            <item>@drawable/emoji_u1fae2</item>
+            <item>@drawable/emoji_u1fae3</item>
+            <item>@drawable/emoji_u1fae4</item>
+            <item>@drawable/emoji_u1f636_200d_1f32b</item>
+            <item>@drawable/emoji_u1f62e_200d_1f4a8</item>
+            <item>@drawable/emoji_u1f635_200d_1f4ab</item>
+        </integer-array>
+        <!-- Description -->
+        <string-array name="emoji_description">
+            <item>grinning face</item>
+            <item>grinning face with smiling eyes</item>
+            <item>face with tears of joy</item>
+            <item>smiling face with open mouth</item>
+            <item>smiling face with open mouth and smiling eyes</item>
+            <item>smiling face with open mouth and cold sweat</item>
+            <item>smiling face with open mouth and tightly-closed eyes</item>
+            <item>smiling face with halo</item>
+            <item>smiling face with horns</item>
+            <item>winking face</item>
+            <item>smiling face with smiling eyes</item>
+            <item>face savouring delicious food</item>
+            <item>relieved face</item>
+            <item>smiling face with heart-shaped eyes</item>
+            <item>smiling face with sunglasses</item>
+            <item>smirking face</item>
+            <item>neutral face</item>
+            <item>expressionless face</item>
+            <item>unamused face</item>
+            <item>face with cold sweat</item>
+            <item>pensive face</item>
+            <item>confused face</item>
+            <item>confounded face</item>
+            <item>kissing face</item>
+            <item>face throwing a kiss</item>
+            <item>kissing face with smiling eyes</item>
+            <item>kissing face with closed eyes</item>
+            <item>face with stuck-out tongue</item>
+            <item>face with stuck-out tongue and winking eye</item>
+            <item>face with stuck-out tongue and tightly-closed eyes</item>
+            <item>disappointed face</item>
+            <item>worried face</item>
+            <item>angry face</item>
+            <item>pouting face</item>
+            <item>crying face</item>
+            <item>persevering face</item>
+            <item>face with look of triumph</item>
+            <item>disappointed but relieved face</item>
+            <item>frowning face with open mouth</item>
+            <item>anguished face</item>
+            <item>fearful face</item>
+            <item>weary face</item>
+            <item>sleepy face</item>
+            <item>tired face</item>
+            <item>grimacing face</item>
+            <item>loudly crying face</item>
+            <item>face with open mouth</item>
+            <item>hushed face</item>
+            <item>face with open mouth and cold sweat</item>
+            <item>face screaming in fear</item>
+            <item>astonished face</item>
+            <item>flushed face</item>
+            <item>sleeping face</item>
+            <item>dizzy face</item>
+            <item>face without mouth</item>
+            <item>face with medical mask</item>
+            <item>slightly frowning face</item>
+            <item>slightly smiling face</item>
+            <item>upside-down face</item>
+            <item>face with rolling eyes</item>
+            <item>zipper-mouth face</item>
+            <item>money-mouth face</item>
+            <item>face with thermometer</item>
+            <item>nerd face</item>
+            <item>thinking face</item>
+            <item>face with head-bandage</item>
+            <item>hugging face</item>
+            <item>face with cowboy hat</item>
+            <item>nauseated face</item>
+            <item>rolling on the floor laughing</item>
+            <item>drooling face</item>
+            <item>lying face</item>
+            <item>sneezing face</item>
+            <item>face with one eyebrow raised</item>
+            <item>grinning face with star eyes</item>
+            <item>grinning face with one large and one small eye</item>
+            <item>serious face with symbols covering mouth</item>
+            <item>smiling face with smiling eyes and hand covering mouth</item>
+            <item>face with open mouth vomiting</item>
+            <item>shocked face with exploding head</item>
+            <item>smiling face with smiling eyes and three hearts</item>
+            <item>yawning face</item>
+            <item>smiling face with tear</item>
+            <item>face with party horn and party hat</item>
+            <item>face with uneven eyes and wavy mouth</item>
+            <item>overheated face</item>
+            <item>freezing face</item>
+            <item>disguised face</item>
+            <item>face holding back tears</item>
+            <item>face with pleading eyes</item>
+            <item>melting face</item>
+            <item>saluting face</item>
+            <item>face with open eyes and hand over mouth</item>
+            <item>face with peeking eye</item>
+            <item>face with diagonal mouth</item>
+            <item>face in clouds</item>
+            <item>face exhaling</item>
+            <item>face with spiral eyes</item>
+        </string-array>
+    <!-- End multi-dimensional Emoji Array -->
+
+    <!-- Default emojis for new users -->
+    <string-array name="default_emojis">
+        <item>1f600</item>
+        <item>1f614</item>
+        <item>1f922</item>
+        <item>1f620</item>
+        <item>1f628</item>
+        <item>1f634</item>
+        <item>1f632</item>
+    </string-array>
+
 </resources>

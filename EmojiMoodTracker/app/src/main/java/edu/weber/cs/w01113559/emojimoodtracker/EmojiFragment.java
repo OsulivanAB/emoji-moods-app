@@ -1,13 +1,14 @@
 package edu.weber.cs.w01113559.emojimoodtracker;
 
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +18,9 @@ import android.widget.TableRow;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentEmojiBinding;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.ReminderData;
 
 public class EmojiFragment extends Fragment {
 
@@ -50,13 +47,15 @@ public class EmojiFragment extends Fragment {
         toolbar.setTitle("Record Mood");
 
         // Show FAB
-        FloatingActionButton graphFab = requireActivity().findViewById(R.id.fab);
+        FloatingActionButton graphFab = requireActivity().findViewById(R.id.graphFAB);
         graphFab.show();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        createEmojiButtons();
 
 
         // ToDo: This should be in a "Populate page" function
@@ -94,4 +93,16 @@ public class EmojiFragment extends Fragment {
                     .show();
         }
     };
+
+    /**
+     * Creates the table emoji buttons based on the shared preferences.
+     * ToDo: Make this section Work
+     */
+    private void createEmojiButtons() {
+        Context context = getContext();
+        if (context != null) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            Set<String> emojis = sharedPreferences.getStringSet("Emojis", null);
+        }
+    }
 }
