@@ -67,9 +67,9 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Hide Graph Button
-        FloatingActionButton graphFab = requireActivity().findViewById(R.id.fab);
-        graphFab.hide();
+        /*// Hide Graph Button
+        FloatingActionButton graphFab = requireActivity().findViewById(R.id.graphFAB);
+        graphFab.hide();*/
         initData();
     }
 
@@ -92,15 +92,16 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
         context = getContext();
 
-        if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
-            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(context));
-        }
+        // Database
         mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
+        if (mDatabase == null) mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance(context);
         mDatabase.setInterface(this);
 
+        // Chart
         pieChart = binding.chart;
         setupPieChart();
 
+        // Views
         tvDatePicker = binding.tvDateRangePicker;
 
         tvDatePicker.setOnClickListener(view -> {
@@ -120,7 +121,6 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
             dateRangePicker.show(getParentFragmentManager(), "Date Range Picker");
         });
-
         datesUpdateFlag = false;
     }
 

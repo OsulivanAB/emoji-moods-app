@@ -19,6 +19,7 @@
         tools:layout="@layout/fragment_graph" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="edu.weber.cs.w01113559.emojimoodtracker.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:name="edu.weber.cs.w01113559.emojimoodtracker.Settings.MainSettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@xml/root_preferences"/>
 </navigation>
