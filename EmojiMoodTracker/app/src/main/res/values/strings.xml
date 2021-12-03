@@ -30,7 +30,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="graph_button">Graph Button</string>
     <string name="sign_out">Sign Out</string>
-    <string name="def_web_client" tools:ignore="TypographyDashes">169942334159-8k1u1ckgng0g6s4tltbf84bnvlmomaua.apps.googleusercontent.com</string>
+
     <string name="or_login_with">Or login with…</string>
     <string name="channel_reminder_1" tools:ignore="Typos">channel_reminder_1</string>
     <string name="channel_1_name">Update Mood Reminder</string>
