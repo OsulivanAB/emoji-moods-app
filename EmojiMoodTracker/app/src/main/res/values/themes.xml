@@ -24,10 +24,9 @@
     <style name="Theme.EmojiMoodTracker.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.EmojiMoodTracker.EmojiImage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">4dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">16dp</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:background">#0000</item>

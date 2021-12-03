@@ -1,10 +1,12 @@
 package edu.weber.cs.w01113559.emojimoodtracker.data.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,7 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class AppDatabase {
 
@@ -27,7 +32,7 @@ public class AppDatabase {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private String userID;
-    public List<Record> recordList;
+    public static List<Record> recordList;
     public static Settings userSettings;
 
     private static DatabaseReference databaseReference;    // General Database Reference
@@ -165,15 +170,15 @@ public class AppDatabase {
     //endregion
 
     //region Writers
-    /**
-     * Add a record for the current user into the database.
-     * @param emoji Drawable: emoji to store in record.
-     */
-    public void writeRecord(@NonNull Drawable emoji) {
-        // ToDo: Check if there was a recent record created.
-        // Create new record at /records/$userid/$recordid
-        Record record = new Record(emoji, context);
+    public static boolean writeRecord(@NonNull String emojiCode) {
+        Record record = new Record(emojiCode);
+        boolean newFlag = checkForRecentRecord(record);
         mRecordsRef.push().setValue(record);
+        return newFlag;
+    }
+
+    private static void removeRecord(String key) {
+        mRecordsRef.child(key).removeValue();
     }
 
     /**
@@ -200,6 +205,33 @@ public class AppDatabase {
         Settings _userSettings = new Settings(emojis, reminders);
         _userSettings.scheduleAlarmsForReminders(context);
         mUserSettingsRef.setValue(_userSettings);
+    }
+
+    public void writeEmojiList(Context context, List<String> emojiList) {
+        if (emojiEncoding.validateList(context, emojiList)){
+            DatabaseReference reference = databaseReference.child("Settings").child(userID).child("emojiList");
+            reference.setValue(emojiList);
+        }
+    }
+    //endregion
+
+    //region Private Functions
+
+    /**
+     * Checks to see if there has been a recent {@link Record} created already.
+     * @param newRecord {@link Record} new record to be added.
+     * @return {@link Boolean} true: there is not a recent record, false: there is a recent record.
+     */
+    private static boolean checkForRecentRecord(Record newRecord) {
+        // ToDo: Add user preference to control this number
+        int CREATE_REACORD_TIME_FRAME_MIN = 15;
+        for (Record record: recordList) {
+            if (TimeUnit.MILLISECONDS.toMinutes(newRecord.getTimestamp() - record.getTimestamp()) <= CREATE_REACORD_TIME_FRAME_MIN) {
+                removeRecord(record.getKey());
+                return false;
+            }
+        }
+        return true;
     }
     //endregion
 }

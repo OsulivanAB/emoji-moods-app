@@ -52,4 +52,9 @@ public class Record {
         this.timestamp = System.currentTimeMillis();
         this.emojiCode = emojiEncoding.decodeEmoji(emoji, context);
     }
+
+    public Record(String emojiCode) {
+        this.timestamp = System.currentTimeMillis();
+        this.emojiCode = emojiCode;
+    }
 }

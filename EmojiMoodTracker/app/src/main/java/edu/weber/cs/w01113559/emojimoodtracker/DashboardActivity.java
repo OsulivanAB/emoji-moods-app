@@ -14,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +23,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import edu.weber.cs.w01113559.emojimoodtracker.Settings.DeleteDataDialog;
 import edu.weber.cs.w01113559.emojimoodtracker.Settings.MainSettingsFragment;
@@ -151,6 +158,8 @@ public class DashboardActivity extends AppCompatActivity implements
             setGraphFabVisibility(false);
             navController.navigate(R.id.graphFragment, null, options);  // Navigate to Graph Page
             binding.toolbar.setTitle("Mood Summary Graph");
+
+
         });
     }
 
