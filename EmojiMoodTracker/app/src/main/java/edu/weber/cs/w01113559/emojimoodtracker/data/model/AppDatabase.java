@@ -29,15 +29,15 @@ public class AppDatabase {
     private final String TAG = "emoji-mood-tracker";
 
     private Context context;
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-    private String userID;
-    public static List<Record> recordList;
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static FirebaseUser currentUser = mAuth.getCurrentUser();
+    private static String userID = (currentUser != null) ? currentUser.getUid() : null;
+    public static List<Record> recordList = new ArrayList<>();
     public static Settings userSettings;
 
-    private static DatabaseReference databaseReference;    // General Database Reference
-    private static DatabaseReference mRecordsRef;          // Reference to the records for the user
-    private static DatabaseReference mUserSettingsRef;        // Refrence to the user settings
+    private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();    // General Database Reference
+    private static DatabaseReference mRecordsRef = databaseReference.child("Records").child(userID);          // Reference to the records for the user
+    private static DatabaseReference mUserSettingsRef = databaseReference.child("Settings").child(userID);        // Refrence to the user settings
 
     private graphFragInterface mCallback;
     //endregion
@@ -61,13 +61,13 @@ public class AppDatabase {
 
         // Initialize Variables
         this.context = _context;
-        this.mAuth = FirebaseAuth.getInstance();
-        this.currentUser = mAuth.getCurrentUser();
-        this.userID = currentUser != null ? currentUser.getUid() : null;
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        mRecordsRef = databaseReference.child("Records").child(userID);
-        mUserSettingsRef = databaseReference.child("Settings").child(userID);
-        recordList = new ArrayList<>();
+//        this.mAuth = FirebaseAuth.getInstance();
+//        this.currentUser = mAuth.getCurrentUser();
+//        this.userID = currentUser != null ? currentUser.getUid() : null;
+//        databaseReference = FirebaseDatabase.getInstance().getReference();
+//        mRecordsRef = databaseReference.child("Records").child(userID);
+//        mUserSettingsRef = databaseReference.child("Settings").child(userID);
+//        recordList = new ArrayList<>();
 
         userSettingsEventListener();
         addRecordsEventListener();
@@ -193,7 +193,7 @@ public class AppDatabase {
      * @param uID String: user ID provided by Firebase Authentication.
      * @param email String: user email used to log in.
      */
-    public void writeNewUser(@NonNull String uID, @NonNull String email) {
+    public static void writeNewUser(@NonNull String uID, @NonNull String email) {
         // 1 - Create User
         // 2 - Save User in /Users/$userid/
         User user = new User("Anthony.R.Bahl@Gmail.com");

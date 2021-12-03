@@ -9,15 +9,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
 import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.User;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -38,13 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initData(){
         auth = FirebaseAuth.getInstance();
-
-        // Database
-
-        if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
-            GlobalAppDatabase.setAppDatabaseInstance(new AppDatabase(getApplicationContext()));
-        }
-        mdatabase = GlobalAppDatabase.getAppDatabaseInstance();
 
         // Register Button
         binding.btnRegister.setOnClickListener(v -> validateUser());
@@ -77,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()){   // Sign in Successful
                         // Add user to database
-                        mdatabase.writeNewUser(Objects.requireNonNull(auth.getCurrentUser()).getUid(),
+                        AppDatabase.writeNewUser(Objects.requireNonNull(auth.getCurrentUser()).getUid(),
                                 Objects.requireNonNull(auth.getCurrentUser().getEmail()));
                         // Log
                         Log.d("createAccount", "createUserWithEmail:success");
