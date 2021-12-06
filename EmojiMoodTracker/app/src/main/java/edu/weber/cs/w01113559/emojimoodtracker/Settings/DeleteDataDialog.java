@@ -26,10 +26,7 @@ public class DeleteDataDialog extends DialogFragment {
         builder
                 .setTitle("Delete Data?")
                 .setMessage("Are you sure you want to delete all your data? It will not be recoverable.")
-                .setPositiveButton("Cancel", (dialogInterface, i) -> {
-                    // No action needed
-                    // Dialog will dismiss itself
-                })
+                .setPositiveButton("Cancel", (dialogInterface, i) -> dismiss())
                 .setNegativeButton("Delete Forever", (dialogInterface, i) -> {
                     AppDatabase mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
                     if (mDatabase == null) {

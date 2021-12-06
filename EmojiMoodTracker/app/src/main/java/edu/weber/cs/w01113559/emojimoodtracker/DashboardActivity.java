@@ -20,6 +20,7 @@ import androidx.preference.PreferenceManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +41,8 @@ import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationDatabas
 import edu.weber.cs.w01113559.emojimoodtracker.notifications.NotificationUtil;
 
 public class DashboardActivity extends AppCompatActivity implements
-        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
+        LogoutDialog.signOutInterface {
 
     private FirebaseAuth auth;
 
@@ -76,27 +78,26 @@ public class DashboardActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_settings:
-                // Remove Graph Button
-                setGraphFabVisibility(false);
-                invalidateOptionsMenu();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.nav_host_fragment_content_main, new MainSettingsFragment())
-                        .commit();
-                return true;
-            case R.id.action_sign_out:
-                auth.signOut();
-                startActivity(new Intent(root.getContext(), LoginActivity.class));
-                finish();
-                return true;
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemID = item.getItemId();
+        if (itemID == R.id.action_settings) {
+            // Remove Graph Button
+            setGraphFabVisibility(false);
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.nav_host_fragment_content_main, new MainSettingsFragment())
+                    .commit();
+            return true;
+        } else if (itemID == R.id.action_sign_out) {
+            DialogFragment logoutDialog = new LogoutDialog(this);
+            logoutDialog.show(getSupportFragmentManager(), "logoutDialog");
+            return true;
+        } else if (itemID == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -178,6 +179,21 @@ public class DashboardActivity extends AppCompatActivity implements
             binding.graphFAB.show();
         } else {
             binding.graphFAB.hide();
+        }
+    }
+
+    @Override
+    public Boolean signout() {
+        if (auth != null && auth.getCurrentUser() != null) {
+            auth = FirebaseAuth.getInstance();
+            auth.signOut();
+            Snackbar.make(root, "Successfully Logged Out.", Snackbar.LENGTH_SHORT).show();
+            startActivity(new Intent(root.getContext(), LoginActivity.class));
+            finish();
+            return true;
+        } else {
+            Snackbar.make(root, "There was an error signing out.", Snackbar.LENGTH_SHORT).show();
+            return false;
         }
     }
 }
