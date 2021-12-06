@@ -52,6 +52,42 @@ public class MainSettingsFragment extends PreferenceFragmentCompat {
                 return true;
             });
         }
+
+        // Manage Notification Dependant Settings
+        SwitchPreferenceCompat notificationsSwitch = findPreference("notificationSwitch");
+        if (notificationsSwitch != null) {
+            // Set Dependency Visibility
+            updateNotificationDependentPreferences(notificationsSwitch.isChecked());
+            // Create click listener
+            notificationsSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
+                Boolean notificationValue = (Boolean) newValue;
+                updateNotificationDependentPreferences(notificationValue);
+                if (!notificationValue) {
+                    // Notifications
+                    // ToDo: Remove any existing notifications
+                }
+                return true;
+            });
+        }
+    }
+
+    /**
+     * Updates the notification modification preferences based on whether it's parent is
+     * enabled or not
+     * @param notificationValue {@link Boolean} The state of the {@link SwitchPreferenceCompat} notificationSwitch.
+     */
+    private void updateNotificationDependentPreferences(Boolean notificationValue) {
+        Preference scheduleReminder = findPreference("scheduleNotification");
+        Preference removeReminder = findPreference("removeNotification");
+        if (notificationValue) {
+            // Notifications Enabled
+            if (scheduleReminder != null) scheduleReminder.setVisible(true);
+            if (removeReminder != null) removeReminder.setVisible(true);
+        } else {
+            // Notifications disabled
+            if (scheduleReminder != null) scheduleReminder.setVisible(false);
+            if (removeReminder != null) removeReminder.setVisible(false);
+        }
     }
 
 }

@@ -17,6 +17,9 @@
         <SwitchPreferenceCompat
             app:icon="@drawable/ic_baseline_notifications_paused_24"
             app:key="notificationSwitch"
+            app:defaultValue="false"
+            app:enabled="false"
+            app:summary="Coming Soon...."
             app:title="@string/enable_notification_reminders" />
 
         <Preference
@@ -30,6 +33,7 @@
             app:dependency="notificationSwitch"
             app:icon="@drawable/ic_baseline_notification_add_24"
             app:key="scheduleNotification"
+            app:isPreferenceVisible="false"
             app:title="@string/schedule_reminder" >
 
         </Preference>
@@ -39,6 +43,7 @@
             app:icon="@drawable/ic_baseline_notifications_remove_24"
             app:key="removeNotification"
             app:title="@string/remove_reminder"
+            app:isPreferenceVisible="false"
             app:fragment="edu.weber.cs.w01113559.emojimoodtracker.Settings.RemoveReminderFragment" />
 
     </PreferenceCategory>
