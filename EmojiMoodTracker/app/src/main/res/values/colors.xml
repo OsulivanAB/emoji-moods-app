@@ -10,4 +10,13 @@
     <color name="colorInputText">#273d52</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorText">#111441</color>
+
+    <color name="primaryColor">#496686</color>
+    <color name="primaryLightColor">#7794b6</color>
+    <color name="primaryDarkColor">#1b3c59</color>
+    <color name="secondaryColor">#498586</color>
+    <color name="secondaryLightColor">#78b5b6</color>
+    <color name="secondaryDarkColor">#175859</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
 </resources>

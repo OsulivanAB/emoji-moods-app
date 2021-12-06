@@ -4,8 +4,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+<!--    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibEmoji"
+        style="@style/Theme.EmojiMoodTracker.EmojiImage" />-->
+
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/ibEmoji"
-        style="@style/Theme.EmojiMoodTracker.EmojiImage" />
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_margin="16dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:background="#0000"/>
 
 </LinearLayout>

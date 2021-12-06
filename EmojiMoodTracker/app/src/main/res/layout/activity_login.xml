@@ -20,7 +20,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="@string/sign_in"
-            android:textColor="@color/colorText"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:textSize="18sp"
@@ -41,7 +40,6 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
-                android:textColor="@color/colorInputText"
                 android:autofillHints="username" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,8 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:passwordToggleContentDescription="password"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/colorAccent">
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
@@ -121,7 +118,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="@string/create_account"
-                android:textColor="@color/colorText"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
