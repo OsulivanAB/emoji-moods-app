@@ -11,15 +11,29 @@
         <action
             android:id="@+id/action_emojiFragment_self"
             app:popUpTo="@id/emojiFragment" />
+        <action
+            android:id="@+id/action_emojiFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/graphFragment"
         android:name="edu.weber.cs.w01113559.emojimoodtracker.GraphFragment"
         android:label="fragment_graph"
-        tools:layout="@layout/fragment_graph" />
+        tools:layout="@layout/fragment_graph" >
+        <action
+            android:id="@+id/action_graphFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="edu.weber.cs.w01113559.emojimoodtracker.Settings.MainSettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@xml/root_preferences"/>
+        tools:layout="@xml/root_preferences">
+        <action
+            android:id="@+id/action_settingsFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_emojiFragment"
+            app:destination="@id/emojiFragment" />
+    </fragment>
 </navigation>

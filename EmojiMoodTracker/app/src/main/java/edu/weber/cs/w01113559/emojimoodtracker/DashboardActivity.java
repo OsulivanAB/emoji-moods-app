@@ -3,6 +3,7 @@ package edu.weber.cs.w01113559.emojimoodtracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -79,6 +80,7 @@ public class DashboardActivity extends AppCompatActivity implements
             case R.id.action_settings:
                 // Remove Graph Button
                 setGraphFabVisibility(false);
+                invalidateOptionsMenu();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)
@@ -90,6 +92,9 @@ public class DashboardActivity extends AppCompatActivity implements
                 startActivity(new Intent(root.getContext(), LoginActivity.class));
                 finish();
                 return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -97,7 +102,8 @@ public class DashboardActivity extends AppCompatActivity implements
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavController navController = navHostFragment.getNavController();
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
