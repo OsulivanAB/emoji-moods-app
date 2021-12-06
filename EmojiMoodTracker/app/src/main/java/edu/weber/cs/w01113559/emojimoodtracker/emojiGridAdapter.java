@@ -104,7 +104,7 @@ public class emojiGridAdapter extends RecyclerView.Adapter<emojiGridAdapter.Emoj
 
             holder.emojiImage.setOnClickListener(view -> {
                 String tag = (String) view.getTag();
-                String message = AppDatabase.writeRecord(tag) ? "New Entry Recorded!" : "Recent entry updated to " + emojiEncoding.getDescription(context, tag);
+                String message = AppDatabase.writeRecord(tag) ? "New Entry Recorded!" : "Recent entry updated to " + emojiEncoding.getUnicode(context, tag);
                 Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
             });
         }

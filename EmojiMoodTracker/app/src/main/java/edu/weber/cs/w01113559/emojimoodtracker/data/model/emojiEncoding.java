@@ -460,4 +460,10 @@ public abstract class emojiEncoding {
         List<String> emojiDescriptions = Arrays.asList(context.getResources().getStringArray(R.array.emoji_description));
         return emojiDescriptions.get(validEmojis.indexOf(tag));
     }
+
+    public static String getUnicode(Context context, String tag) {
+        List<String> validEmojis = Arrays.asList(context.getResources().getStringArray(R.array.emoji_hex_codes));
+        List<String> emoji_unicode = Arrays.asList(context.getResources().getStringArray(R.array.emoji_unicode));
+        return emoji_unicode.get(validEmojis.indexOf(tag));
+    }
 }
