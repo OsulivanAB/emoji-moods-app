@@ -1,7 +1,9 @@
 package edu.weber.cs.w01113559.emojimoodtracker;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -126,6 +128,13 @@ public class DashboardActivity extends AppCompatActivity implements
                 return true;
             case "sendFeedback":
 
+                try {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/AnthonyBahlWeber/emoji-moods-app/issues"));
+                    startActivity(browserIntent);
+                } catch (Exception e) {
+                    Log.d(MyApplication.TAG, e.getMessage());
+                }/*
+
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("plain/text");
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.feedback_email_address)});
@@ -137,7 +146,7 @@ public class DashboardActivity extends AppCompatActivity implements
                     startActivity(intent);
                 } else {
                     Snackbar.make(root, "Sorry, something went wrong.", Snackbar.LENGTH_SHORT).show();
-                }
+                }*/
                 return true;
         }
         return false;

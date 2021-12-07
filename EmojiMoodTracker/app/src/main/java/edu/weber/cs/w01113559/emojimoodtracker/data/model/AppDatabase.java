@@ -34,20 +34,6 @@ public class AppDatabase {
     private graphFragInterface mCallback;
     //endregion
 
-    /**
-     * Add a new user record to the database.
-     *
-     * @param uID   String: user ID provided by Firebase Authentication.
-     * @param email String: user email used to log in.
-     */
-    @SuppressWarnings("unused")
-    public static void writeNewUser(@NonNull String uID, @NonNull String email) {
-        // 1 - Create User
-        // 2 - Save User in /Users/$userid/
-        User user = new User(email);
-        databaseReference.child("Users").child(uID).setValue(user);
-    }
-
     public static void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders) {
         userSettings.deleteAlarmsForReminders(context);
         Settings _userSettings = new Settings(emojis, reminders);

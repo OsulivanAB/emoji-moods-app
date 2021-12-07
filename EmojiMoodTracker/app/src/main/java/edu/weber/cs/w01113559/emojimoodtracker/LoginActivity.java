@@ -22,7 +22,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
 
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -146,8 +145,6 @@ public class LoginActivity extends AppCompatActivity {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        AppDatabase.writeNewUser(Objects.requireNonNull(auth.getCurrentUser()).getUid(),
-                                Objects.requireNonNull(auth.getCurrentUser().getEmail()));
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithCredential:success");
                         startActivity(new Intent(root.getContext(), DashboardActivity.class));

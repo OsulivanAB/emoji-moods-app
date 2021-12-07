@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
 import edu.weber.cs.w01113559.emojimoodtracker.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -63,9 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()){   // Sign in Successful
-                        // Add user to database
-                        AppDatabase.writeNewUser(Objects.requireNonNull(auth.getCurrentUser()).getUid(),
-                                Objects.requireNonNull(auth.getCurrentUser().getEmail()));
                         // Log
                         Log.d("createAccount", "createUserWithEmail:success");
                         // Swap activities
