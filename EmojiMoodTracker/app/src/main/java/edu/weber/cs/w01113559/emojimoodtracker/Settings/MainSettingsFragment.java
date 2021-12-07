@@ -11,6 +11,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
+import edu.weber.cs.w01113559.emojimoodtracker.BuildConfig;
 import edu.weber.cs.w01113559.emojimoodtracker.DashboardActivity;
 import edu.weber.cs.w01113559.emojimoodtracker.R;
 
@@ -42,6 +43,8 @@ public class MainSettingsFragment extends PreferenceFragmentCompat {
     public void onResume() {
         super.onResume();
         ((DashboardActivity) requireActivity()).setGraphFabVisibility(false);
+        Preference version = findPreference("version");
+        if (version != null) version.setSummary(BuildConfig.VERSION_NAME);
     }
 
     /**
