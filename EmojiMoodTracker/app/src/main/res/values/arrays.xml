@@ -1,14 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Reply Preference -->
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
-    </string-array>
-
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
-    </string-array>
 
     <string-array name="days">
         <item>Sunday</item>
@@ -18,12 +9,6 @@
         <item>Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
-    </string-array>
-
-    <string-array name="graph_types">
-        <item>Pie</item>
-        <item>Bar</item>
-        <item>Line</item>
     </string-array>
 
     <!-- Emoji multi-dimensional Array -->
@@ -230,7 +215,7 @@
             <item tools:ignore="Typos">\uD83D\uDE35\u200D\uD83D\uDCAB</item>
         </string-array>
         <!-- Drawable Resource Codes -->
-        <integer-array name="emoji_drawable_resource_ids">
+        <integer-array name="emoji_drawable_resource_ids" tools:ignore="UnusedResources">
             <item>@drawable/emoji_u1f600</item>
             <item>@drawable/emoji_u1f601</item>
             <item>@drawable/emoji_u1f602</item>
@@ -330,28 +315,28 @@
             <item>@drawable/emoji_u1f62e_200d_1f4a8</item>
             <item>@drawable/emoji_u1f635_200d_1f4ab</item>
         </integer-array>
-        <!-- Description -->
-        <string-array name="emoji_description">
-            <item>grinning face</item>
-            <item>grinning face with smiling eyes</item>
-            <item>face with tears of joy</item>
-            <item>smiling face with open mouth</item>
-            <item>smiling face with open mouth and smiling eyes</item>
-            <item>smiling face with open mouth and cold sweat</item>
-            <item>smiling face with open mouth and tightly-closed eyes</item>
-            <item>smiling face with halo</item>
-            <item>smiling face with horns</item>
-            <item>winking face</item>
-            <item>smiling face with smiling eyes</item>
-            <item>face savouring delicious food</item>
-            <item>relieved face</item>
-            <item>smiling face with heart-shaped eyes</item>
-            <item>smiling face with sunglasses</item>
-            <item>smirking face</item>
-            <item>neutral face</item>
-            <item>expressionless face</item>
-            <item>unamused face</item>
-            <item>face with cold sweat</item>
+    <!-- Description -->
+    <string-array name="emoji_description" tools:ignore="UnusedResources">
+        <item>grinning face</item>
+        <item>grinning face with smiling eyes</item>
+        <item>face with tears of joy</item>
+        <item>smiling face with open mouth</item>
+        <item>smiling face with open mouth and smiling eyes</item>
+        <item>smiling face with open mouth and cold sweat</item>
+        <item>smiling face with open mouth and tightly-closed eyes</item>
+        <item>smiling face with halo</item>
+        <item>smiling face with horns</item>
+        <item>winking face</item>
+        <item>smiling face with smiling eyes</item>
+        <item>face savouring delicious food</item>
+        <item>relieved face</item>
+        <item>smiling face with heart-shaped eyes</item>
+        <item>smiling face with sunglasses</item>
+        <item>smirking face</item>
+        <item>neutral face</item>
+        <item>expressionless face</item>
+        <item>unamused face</item>
+        <item>face with cold sweat</item>
             <item>pensive face</item>
             <item>confused face</item>
             <item>confounded face</item>

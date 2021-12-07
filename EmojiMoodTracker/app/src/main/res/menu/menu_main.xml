@@ -6,7 +6,7 @@
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:orderInCategory="1"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:title="@string/settings" />
     <item
         android:id="@+id/action_sign_out"

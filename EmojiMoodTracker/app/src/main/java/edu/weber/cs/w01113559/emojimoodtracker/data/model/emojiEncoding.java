@@ -425,16 +425,6 @@ public abstract class emojiEncoding {
         }
     }
 
-    /**
-     * Validates a list of strings to make sure they are valid emojis in our list
-     * @param emojiList {@link List<String>} list of emoji codes
-     * @return {@link Boolean} true: valid list, false: invalid list.
-     */
-    public static boolean validateList(Context context, List<String> emojiList) {
-        List<String> validEmojis = Arrays.asList(context.getResources().getStringArray(R.array.emoji_hex_codes));
-        return validEmojis.containsAll(emojiList);
-    }
-
     public static String getUnicode(Context context, String tag) {
         List<String> validEmojis = Arrays.asList(context.getResources().getStringArray(R.array.emoji_hex_codes));
         List<String> emoji_unicode = Arrays.asList(context.getResources().getStringArray(R.array.emoji_unicode));

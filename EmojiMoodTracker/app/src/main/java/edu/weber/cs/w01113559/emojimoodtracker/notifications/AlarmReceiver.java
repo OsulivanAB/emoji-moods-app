@@ -3,15 +3,10 @@ package edu.weber.cs.w01113559.emojimoodtracker.notifications;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import edu.weber.cs.w01113559.emojimoodtracker.R;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.AppDatabase;
-import edu.weber.cs.w01113559.emojimoodtracker.data.model.GlobalAppDatabase;
 
 public class AlarmReceiver extends BroadcastReceiver {
-
-    private String TAG = AlarmReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {

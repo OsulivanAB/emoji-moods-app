@@ -20,28 +20,12 @@ import edu.weber.cs.w01113559.emojimoodtracker.data.model.emojiEncoding;
 
 public class emojiGridAdapter extends RecyclerView.Adapter<emojiGridAdapter.EmojiViewHolder> {
 
-    private List<String> emojiList;
-    private Context context;
-
-    /**
-     * Viewholder Class that will hold each emoji object
-     */
-    public class EmojiViewHolder extends RecyclerView.ViewHolder {
-
-        protected final View itemRoot;
-        protected final AppCompatImageButton emojiImage;
-        protected String tag;
-
-        public EmojiViewHolder(@NonNull View emojiButtonFragment) {
-            super(emojiButtonFragment);
-
-            this.itemRoot = emojiButtonFragment;
-            this.emojiImage = emojiButtonFragment.findViewById(R.id.ibEmoji);
-        }
-    }
+    private final List<String> emojiList;
+    private final Context context;
 
     /**
      * Initializes the Adapter
+     *
      * @param emojiList {@link List<String>} of emojis from the user {@link Settings}.
      */
     public emojiGridAdapter(Context context, List<String> emojiList) {
@@ -51,20 +35,29 @@ public class emojiGridAdapter extends RecyclerView.Adapter<emojiGridAdapter.Emoj
 
     /**
      * Updates the emoji list.
+     *
      * @param list {@link List<String>} of emojis from user {@link Settings}.
      */
+    @SuppressWarnings("unused")
     public void setEmojiList(List<String> list) {
         this.emojiList.clear();
         this.emojiList.addAll(list);
-        notifyDataSetChanged();
     }
 
     /**
-     * Getter for the emoji list
-     * @return {@link List<String>} the current list of emojis that the adapter is using.
+     * View holder Class that will hold each emoji object
      */
-    public List<String> getEmojiList() {
-        return emojiList;
+    public static class EmojiViewHolder extends RecyclerView.ViewHolder {
+
+        protected final View itemRoot;
+        protected final AppCompatImageButton emojiImage;
+
+        public EmojiViewHolder(@NonNull View emojiButtonFragment) {
+            super(emojiButtonFragment);
+
+            this.itemRoot = emojiButtonFragment;
+            this.emojiImage = emojiButtonFragment.findViewById(R.id.ibEmoji);
+        }
     }
 
     /**

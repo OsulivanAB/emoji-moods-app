@@ -1,7 +1,5 @@
 package edu.weber.cs.w01113559.emojimoodtracker.data.model;
 
-import android.content.Context;
-
 public final class GlobalAppDatabase {
 
     private static AppDatabase sAppDatabase = null;
@@ -11,14 +9,6 @@ public final class GlobalAppDatabase {
      * know the Application's process was killed.
      */
     private GlobalAppDatabase() { }
-
-    /**
-     * sets the global variable using a user provided {@link AppDatabase}
-     * @param database {@link AppDatabase} to set the global variable to.
-     */
-    public static void setAppDatabaseInstance(AppDatabase database) {
-        sAppDatabase = database;
-    }
 
     /**
      * Instantiates the global {@link AppDatabase} variable.

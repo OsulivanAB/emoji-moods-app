@@ -26,6 +26,7 @@
             app:dependency="notificationSwitch"
             app:icon="@drawable/ic_baseline_edit_notifications_24"
             app:key="manageNotifications"
+            app:summary="@string/notification_settings_summary"
             app:title="@string/manage_notifications" />
 
         <Preference

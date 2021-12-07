@@ -15,19 +15,10 @@
 
     <!-- ToDo: Remove all Unused Preference Strings -->
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="graph_button">Graph Button</string>
     <string name="sign_out">Sign Out</string>
 
@@ -43,7 +34,8 @@
     <string name="enable_notification_reminders">Enable Notification Reminders</string>
     <string name="schedule_reminder">Schedule Reminder</string>
     <string name="data">Data</string>
-    <string name="manage_notifications">Manage Notifications</string>
+    <string name="manage_notifications">Notifications Settings</string>
     <string name="remove_reminder">Remove Reminder</string>
     <string name="customization">Customization</string>
+    <string name="notification_settings_summary">Notification settings are managed in device settings.</string>
 </resources>

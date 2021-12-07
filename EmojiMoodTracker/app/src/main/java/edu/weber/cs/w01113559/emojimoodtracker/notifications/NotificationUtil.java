@@ -1,5 +1,6 @@
 package edu.weber.cs.w01113559.emojimoodtracker.notifications;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -11,7 +12,6 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.TaskStackBuilder;
@@ -28,12 +28,11 @@ public class NotificationUtil {
 
     /**
      * Creates a {@link NotificationChannel} if there isn't one already created on the device.
+     *
      * @param context {@link Context} current application context
-     * @param data {@link NotificationDatabase.NotificationData} Reminder Data for this notification
-     * @return {@link String} The channel ID of the new channel. Null if the channel already existed.
+     * @param data    {@link NotificationDatabase.NotificationData} Reminder Data for this notification
      */
-    @Nullable
-    public static String createNotificationChannel(Context context, NotificationDatabase.NotificationData data){
+    public static void createNotificationChannel(Context context, NotificationDatabase.NotificationData data) {
 
         // Notification Channels are only necessary post Android O
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -61,10 +60,6 @@ public class NotificationUtil {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.createNotificationChannel(notificationChannel);
 
-            return channelID;
-        } else {
-            // Returns null for pre-O (26) devices.
-            return null;
         }
     }
 
@@ -97,18 +92,23 @@ public class NotificationUtil {
         stackBuilder.addNextIntentWithParentStack(notifyIntent);
         // Get the PendingIntent containing the entire back stack
         PendingIntent notifyPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        return new NotificationCompat.Builder(context, data.getChannelId())
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, data.getChannelId())
                 .setSmallIcon(R.drawable.emoji_u1f427)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.emoji_u1f427))
                 .setContentTitle(data.getContentTitle())
                 .setContentText(data.getContentText())
                 .setColor(ContextCompat.getColor(context, R.color.teal_700))
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setCategory(Notification.CATEGORY_REMINDER)
                 .setPriority(data.getPriority())
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setAutoCancel(true)
                 .setContentIntent(notifyPendingIntent);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            builder.setCategory(Notification.CATEGORY_REMINDER);
+        }
+
+        return builder;
     }
 
     /**
@@ -117,11 +117,14 @@ public class NotificationUtil {
      * @param reminderData {@link ReminderData} ReminderData for the notification
      * @param day {@link String} String representation of the day
      */
+    @SuppressLint("UnspecifiedImmutableFlag")
     private static PendingIntent createPendingIntent(Context context, @NonNull ReminderData reminderData, String day) {
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.setAction(context.getString(R.string.action_notify_update_mood));
         intent.setType(day + reminderData.getID());
         intent.putExtra(MainActivity.KEY_ID, reminderData.getID());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
@@ -157,6 +160,7 @@ public class NotificationUtil {
      * @param context {@link Context} current application context
      * @param reminderData {@link ReminderData} ReminderData for the notification
      */
+    @SuppressLint("UnspecifiedImmutableFlag")
     public static void removeAlarmsForReminder(Context context, ReminderData reminderData) {
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.setAction(String.valueOf(R.string.action_notify_update_mood));
@@ -168,7 +172,11 @@ public class NotificationUtil {
             for (String day : reminderData.getDays()) {
                 if (day != null) {
                     intent.setType(day + reminderData.getID());
-                    PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent alarmIntent = null;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+                    else
+                        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                     AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                     alarmManager.cancel(alarmIntent);
                 }

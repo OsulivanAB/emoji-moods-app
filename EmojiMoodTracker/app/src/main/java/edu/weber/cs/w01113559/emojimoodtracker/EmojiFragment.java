@@ -3,24 +3,21 @@ package edu.weber.cs.w01113559.emojimoodtracker;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,9 +32,8 @@ import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentEmojiBinding;
 
 public class EmojiFragment extends Fragment {
 
-    private final String TAG = "emoji-mood-tracker";
+    @SuppressWarnings("unused")
     private FragmentEmojiBinding binding;
-    private AppDatabase mDatabase;
 
     public EmojiFragment() {
         // Required empty public constructor
@@ -47,20 +43,9 @@ public class EmojiFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentEmojiBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
         setHasOptionsMenu(true);
-        initData();
-
-        // Setup Action Bar
-        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false);
-            actionBar.setDisplayHomeAsUpEnabled(false);
-            actionBar.setDisplayShowHomeEnabled(false);
-
-        }
-
-        return root;
+        ((DashboardActivity) requireActivity()).setHomeButton(false);
+        return binding.getRoot();
     }
 
     @Override
@@ -82,32 +67,13 @@ public class EmojiFragment extends Fragment {
         graphFab.show();
 
         // Get Database
-        mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
+        AppDatabase mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         generateEmojiButtons();
-
-//
-//        // ToDo: This should be in a "Populate page" function
-//        // Loop through Rows in the Table
-//        for (int i = 0; i < binding.emojiTable.getChildCount(); i++) {
-//            if (binding.emojiTable.getChildAt(i) instanceof TableRow) {
-//                TableRow row = (TableRow) binding.emojiTable.getChildAt(i);
-//                // Loop Through Items in the row
-//                for (int j = 0; j < row.getChildCount(); j++) {
-//                    if (row.getChildAt(j) instanceof AppCompatImageButton) {
-//                        // Analyze the image
-//                        AppCompatImageButton image = (AppCompatImageButton) row.getChildAt(j);
-//                        image.setOnClickListener(emojiButtonListener);
-//                    }
-//                }
-//            }
-//        }
-//        // ToDo: End ToDo
     }
 
     @Override
@@ -116,21 +82,15 @@ public class EmojiFragment extends Fragment {
         binding = null;
     }
 
-    /**
-     * Listener for almost all buttons
-     */
-    private View.OnClickListener emojiButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Snackbar.make(binding.getRoot(), "You chose: " + v.getTag().toString() + ".", Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null)
-                    .show();
-        }
-    };
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
+    }
+
 
     /**
-     * Creates the table emoji buttons based on the shared preferences.
-     * ToDo: Make this section Work
+     * Populates Emoji Button Array.
      */
     private void generateEmojiButtons() {
         Context context = getContext();
@@ -158,7 +118,7 @@ public class EmojiFragment extends Fragment {
                     emojis = new HashSet<>(emojiList);
                 }
 
-                // If unsuccessful get the dfaults
+                // If unsuccessful get the defaults
                 else {
                     // Get Defaults
                     String[] emojisArray = context.getResources().getStringArray(R.array.default_emojis);
@@ -168,12 +128,11 @@ public class EmojiFragment extends Fragment {
 
                 // Update User Preferences
                 SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-                prefsEditor.putStringSet("Emojis", emojis).commit();
+                prefsEditor.putStringSet("Emojis", emojis).apply();
             }
 
             if (emojiList == null) {
-                emojiList = new ArrayList<>();
-                emojiList.addAll(emojis);
+                emojiList = new ArrayList<>(emojis);
             }
 
             RecyclerView recyclerView = binding.emojiRV;

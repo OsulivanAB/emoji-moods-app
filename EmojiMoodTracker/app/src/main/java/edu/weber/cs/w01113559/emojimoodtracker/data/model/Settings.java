@@ -93,7 +93,6 @@ public class Settings {
 
     /**
      * Returns a list of emoji codes.
-     * Decodeable using {@link emojiEncoding}.
      * @return {@link List} list of {@link String} emoji codes.
      */
     public List<String> getEmojiList() {

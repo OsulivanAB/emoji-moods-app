@@ -24,7 +24,7 @@ public class AppDatabase {
     private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static final FirebaseUser currentUser = mAuth.getCurrentUser();
     private static final String userID = (currentUser != null) ? currentUser.getUid() : null;
-    public static List<Record> recordList = new ArrayList<>();
+    public static final List<Record> recordList = new ArrayList<>();
     public static Settings userSettings;
 
     private static final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();    // General Database Reference
@@ -34,18 +34,27 @@ public class AppDatabase {
     private graphFragInterface mCallback;
     //endregion
 
-    //region Interface
-    public interface graphFragInterface {
-        void updateChart(List<Record> records);
+    /**
+     * Add a new user record to the database.
+     *
+     * @param uID   String: user ID provided by Firebase Authentication.
+     * @param email String: user email used to log in.
+     */
+    @SuppressWarnings("unused")
+    public static void writeNewUser(@NonNull String uID, @NonNull String email) {
+        // 1 - Create User
+        // 2 - Save User in /Users/$userid/
+        User user = new User(email);
+        databaseReference.child("Users").child(uID).setValue(user);
     }
 
-    public void setInterface(graphFragInterface reference){
-        mCallback = reference;
+    public static void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders) {
+        userSettings.deleteAlarmsForReminders(context);
+        Settings _userSettings = new Settings(emojis, reminders);
+        _userSettings.scheduleAlarmsForReminders(context);
+        mUserSettingsRef.setValue(_userSettings);
     }
 
-    public void RemoveInterface(){
-        mCallback = null;
-    }
     //endregion
 
     //region Constructors
@@ -150,37 +159,20 @@ public class AppDatabase {
         mRecordsRef.child(key).removeValue();
     }
 
+    public void setInterface(graphFragInterface reference) {
+        mCallback = reference;
+    }
+
     /**
      * Clears all Records for the current user.
      */
-    public void removeAllRecords(){
+    public void removeAllRecords() {
         mRecordsRef.removeValue();
     }
 
-    /**
-     * Add a new user record to the database.
-     * @param uID String: user ID provided by Firebase Authentication.
-     * @param email String: user email used to log in.
-     */
-    public static void writeNewUser(@NonNull String uID, @NonNull String email) {
-        // 1 - Create User
-        // 2 - Save User in /Users/$userid/
-        User user = new User(email);
-        databaseReference.child("Users").child(uID).setValue(user);
-    }
-
-    public static void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders){
-        userSettings.deleteAlarmsForReminders(context);
-        Settings _userSettings = new Settings(emojis, reminders);
-        _userSettings.scheduleAlarmsForReminders(context);
-        mUserSettingsRef.setValue(_userSettings);
-    }
-
-    public void writeEmojiList(Context context, List<String> emojiList) {
-        if (emojiEncoding.validateList(context, emojiList)){
-            DatabaseReference reference = databaseReference.child("Settings").child(userID).child("emojiList");
-            reference.setValue(emojiList);
-        }
+    //region Interface
+    public interface graphFragInterface {
+        void updateChart(@SuppressWarnings("unused") List<Record> records);
     }
     //endregion
 
@@ -188,6 +180,7 @@ public class AppDatabase {
 
     /**
      * Checks to see if there has been a recent {@link Record} created already.
+     *
      * @param newRecord {@link Record} new record to be added.
      * @return {@link Boolean} true: there is not a recent record, false: there is a recent record.
      */

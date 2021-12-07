@@ -1,37 +1,26 @@
 package edu.weber.cs.w01113559.emojimoodtracker;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NavUtils;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.NavOptions;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
 
 import edu.weber.cs.w01113559.emojimoodtracker.Settings.DeleteDataDialog;
 import edu.weber.cs.w01113559.emojimoodtracker.Settings.MainSettingsFragment;
@@ -44,17 +33,24 @@ public class DashboardActivity extends AppCompatActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
         LogoutDialog.signOutInterface {
 
+    @SuppressWarnings("unused")
     private FirebaseAuth auth;
 
+    @SuppressWarnings("unused")
     private View root;
+    @SuppressWarnings("unused")
     private ActivityDashboardBinding binding;
+    @SuppressWarnings("unused")
     private Toolbar toolbar;
+    @SuppressWarnings("unused")
     private AppBarConfiguration appBarConfiguration;
 
+    @SuppressWarnings("unused")
     private NavHostFragment navHostFragment;
+    @SuppressWarnings("unused")
     private NavController navController;
+    @SuppressWarnings("unused")
     private NavOptions options;
-    private NavOptions.Builder optionsBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +115,7 @@ public class DashboardActivity extends AppCompatActivity implements
     public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
         switch (pref.getKey()) {
             case "scheduleNotification":
-                //ToDo: Handle Schedlue Notification Click
+                //ToDo: Handle Schedule Notification Click
                 return true;
             case "removeNotification":
                 // ToDo: handle Remove Notification Click
@@ -154,7 +150,7 @@ public class DashboardActivity extends AppCompatActivity implements
         assert navHostFragment != null;
         navController = navHostFragment.getNavController();
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        optionsBuilder = new NavOptions.Builder();
+        NavOptions.Builder optionsBuilder = new NavOptions.Builder();
         options = optionsBuilder
                 .setEnterAnim(R.anim.slide_in_right)
                 .setExitAnim(R.anim.slide_out_left)
@@ -172,28 +168,38 @@ public class DashboardActivity extends AppCompatActivity implements
 
     /**
      * Sets the {@link com.google.android.material.floatingactionbutton.FloatingActionButton} for the graph page as visible or not.
+     *
      * @param visibility {@link Boolean} true- visible, false- hidden.
      */
-    private void setGraphFabVisibility(@NonNull Boolean visibility) {
-        if (visibility) {
-            binding.graphFAB.show();
-        } else {
-            binding.graphFAB.hide();
-        }
+    public void setGraphFabVisibility(@NonNull Boolean visibility) {
+        if (visibility) binding.graphFAB.show();
+        else binding.graphFAB.hide();
     }
 
     @Override
-    public Boolean signout() {
+    public void signout() {
         if (auth != null && auth.getCurrentUser() != null) {
             auth = FirebaseAuth.getInstance();
             auth.signOut();
             Snackbar.make(root, "Successfully Logged Out.", Snackbar.LENGTH_SHORT).show();
             startActivity(new Intent(root.getContext(), LoginActivity.class));
             finish();
-            return true;
         } else {
             Snackbar.make(root, "There was an error signing out.", Snackbar.LENGTH_SHORT).show();
-            return false;
+        }
+    }
+
+    /**
+     * Sets the status of the Home/Back Button in the {@link ActionBar}.
+     *
+     * @param status {@link Boolean} true: show back, arrow false: hide back arrow
+     */
+    public void setHomeButton(Boolean status) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(status);
+            actionBar.setDisplayHomeAsUpEnabled(status);
+            actionBar.setDisplayShowHomeEnabled(status);
         }
     }
 }

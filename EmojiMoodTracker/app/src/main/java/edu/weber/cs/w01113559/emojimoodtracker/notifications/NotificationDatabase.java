@@ -2,6 +2,7 @@ package edu.weber.cs.w01113559.emojimoodtracker.notifications;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -51,7 +52,9 @@ public final class NotificationDatabase {
             mChannelName = context.getString(R.string.channel_1_name);
             // User-visible description of channel.
             mChannelDescription = context.getString(R.string.channel_1_description);
-            mChannelImportance = NotificationManager.IMPORTANCE_DEFAULT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                mChannelImportance = NotificationManager.IMPORTANCE_DEFAULT;
+            }
             mChannelEnableVibrate = true;
             mChannelLockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC;
         }

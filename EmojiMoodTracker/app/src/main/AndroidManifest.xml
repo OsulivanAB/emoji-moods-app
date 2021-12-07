@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.weber.cs.w01113559.emojimoodtracker">
 
-    <!--  ToDO: Delete Internet permisssions unless used  -->
-<!--    <uses-permission android:name="android.permission.INTERNET" />-->
-
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application

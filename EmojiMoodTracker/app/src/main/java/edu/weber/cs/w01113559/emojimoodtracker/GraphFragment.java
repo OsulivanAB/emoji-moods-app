@@ -1,25 +1,21 @@
 package edu.weber.cs.w01113559.emojimoodtracker;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
-
-import androidx.core.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.util.Pair;
+import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -28,7 +24,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,15 +42,13 @@ import edu.weber.cs.w01113559.emojimoodtracker.databinding.FragmentGraphBinding;
 
 public class GraphFragment extends Fragment implements AppDatabase.graphFragInterface {
 
+    @SuppressWarnings("unused")
     private FragmentGraphBinding binding;
     private PieChart pieChart;
-    private AppDatabase mDatabase;
-    private Context context;
     private boolean datesUpdateFlag;
     private AppCompatTextView tvDatePicker;
     private Date startDateRange = new Date(System.currentTimeMillis());
     private Date endDateRange = new Date(System.currentTimeMillis());
-    private MaterialDatePicker<Pair<Long, Long>> dateRangePicker;
 
     public GraphFragment() {
         // Required empty public constructor
@@ -66,16 +59,7 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
                              Bundle savedInstanceState) {
         binding = FragmentGraphBinding.inflate(inflater, container, false);
         setHasOptionsMenu(true);
-
-        // Setup Action Bar
-        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-
-        }
-
+        ((DashboardActivity) requireActivity()).setHomeButton(true);
         return binding.getRoot();
     }
 
@@ -90,22 +74,13 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*// Hide Graph Button
-        FloatingActionButton graphFab = requireActivity().findViewById(R.id.graphFAB);
-        graphFab.hide();*/
         initData();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateChart(mDatabase.recordList);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mDatabase.RemoveInterface();
+        updateChart(AppDatabase.recordList);
     }
 
     /**
@@ -113,10 +88,8 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
      */
     private void initData() {
 
-        context = getContext();
-
         // Database
-        mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
+        AppDatabase mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
         if (mDatabase == null) mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance();
         mDatabase.setInterface(this);
 
@@ -128,8 +101,7 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
         tvDatePicker = binding.tvDateRangePicker;
 
         tvDatePicker.setOnClickListener(view -> {
-
-            dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
+            MaterialDatePicker<Pair<Long, Long>> dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText("Select dates")
                     .setSelection(new Pair<>(startDateRange.getTime(), endDateRange.getTime()))
                     .setTheme(R.style.Theme_EmojiMoodTracker_GraphDatePicker_Dialog)
@@ -160,12 +132,14 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
         Map<String, Integer> scores = new HashMap<>();
 
-        // Loop through record list and count each emoji occurance
-        for (Record record : mDatabase.recordList) {
+        // Loop through record list and count each emoji occurrence
+        for (Record record : AppDatabase.recordList) {
 
             // Check if record is within date range
             Date recordDate = record.getDate();
-            if (recordDate.before(startDateRange) || recordDate.after(endDateRange)) { continue; }
+            if (recordDate.before(startDateRange) || recordDate.after(endDateRange)) {
+                continue;
+            }
 
             String emoji = record.getEmojiCode();
             boolean flag = false;
@@ -192,7 +166,7 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
         // Populate Pie chart entries
         for (Map.Entry<String, Integer> entry : scores.entrySet()) {
-            Drawable smallerDrawable = shrinkEmoji(emojiEncoding.encodeEmoji(entry.getKey(), context));
+            Drawable smallerDrawable = shrinkEmoji(emojiEncoding.encodeEmoji(entry.getKey(), getContext()));
             entries.add(new PieEntry(entry.getValue(), smallerDrawable));
         }
 

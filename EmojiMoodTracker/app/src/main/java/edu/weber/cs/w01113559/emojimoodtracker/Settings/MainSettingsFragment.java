@@ -77,7 +77,7 @@ public class MainSettingsFragment extends PreferenceFragmentCompat {
             // Create click listener
             notificationsSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
                 Boolean notificationSwitchState = (Boolean) newValue;
-                // Set Visibility of Dependancy Preferences
+                // Set Visibility of Dependency Preferences
                 updateNotificationDependentPreferences((Boolean) newValue);
                 // Remove notifications if user is turning off (But not deleting them from shared preferences)
                 if (notificationSwitchState) {
