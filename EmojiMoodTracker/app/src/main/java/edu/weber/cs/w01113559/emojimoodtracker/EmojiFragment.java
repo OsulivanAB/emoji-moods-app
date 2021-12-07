@@ -145,7 +145,7 @@ public class EmojiFragment extends Fragment {
             if (emojis == null) {   // Check Firebase
 
                 AppDatabase mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
-                if (mDatabase == null) mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance(context);
+                if (mDatabase == null) mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance();
 
                 // Get List saved in database
                 Settings userSettings = AppDatabase.userSettings;

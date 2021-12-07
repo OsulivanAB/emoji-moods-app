@@ -1,12 +1,9 @@
 package edu.weber.cs.w01113559.emojimoodtracker.data.model;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,26 +15,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class AppDatabase {
 
-    //region Variables
-    private final String TAG = "emoji-mood-tracker";
-
-    private Context context;
-    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private static FirebaseUser currentUser = mAuth.getCurrentUser();
-    private static String userID = (currentUser != null) ? currentUser.getUid() : null;
+    private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static final FirebaseUser currentUser = mAuth.getCurrentUser();
+    private static final String userID = (currentUser != null) ? currentUser.getUid() : null;
     public static List<Record> recordList = new ArrayList<>();
     public static Settings userSettings;
 
-    private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();    // General Database Reference
-    private static DatabaseReference mRecordsRef = databaseReference.child("Records").child(userID);          // Reference to the records for the user
-    private static DatabaseReference mUserSettingsRef = databaseReference.child("Settings").child(userID);        // Refrence to the user settings
+    private static final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();    // General Database Reference
+    private static final DatabaseReference mRecordsRef = databaseReference.child("Records").child(Objects.requireNonNull(userID));          // Reference to the records for the user
+    private static final DatabaseReference mUserSettingsRef = databaseReference.child("Settings").child(userID);        // Reference to the user settings
 
     private graphFragInterface mCallback;
     //endregion
@@ -57,35 +49,12 @@ public class AppDatabase {
     //endregion
 
     //region Constructors
-    public AppDatabase(Context _context) {
-
-        // Initialize Variables
-        this.context = _context;
-//        this.mAuth = FirebaseAuth.getInstance();
-//        this.currentUser = mAuth.getCurrentUser();
-//        this.userID = currentUser != null ? currentUser.getUid() : null;
-//        databaseReference = FirebaseDatabase.getInstance().getReference();
-//        mRecordsRef = databaseReference.child("Records").child(userID);
-//        mUserSettingsRef = databaseReference.child("Settings").child(userID);
-//        recordList = new ArrayList<>();
-
+    public AppDatabase() {
         userSettingsEventListener();
         addRecordsEventListener();
     }
     //endregion
 
-    //region Getters
-    public String getUserID() {
-        return userID;
-    }
-
-    public List<Record> getRecordList() {
-        return recordList;
-    }
-
-    public Settings getUserSettings() {
-        return userSettings;
-    }
     //endregion
 
     //region Event Listeners
@@ -196,7 +165,7 @@ public class AppDatabase {
     public static void writeNewUser(@NonNull String uID, @NonNull String email) {
         // 1 - Create User
         // 2 - Save User in /Users/$userid/
-        User user = new User("Anthony.R.Bahl@Gmail.com");
+        User user = new User(email);
         databaseReference.child("Users").child(uID).setValue(user);
     }
 
@@ -224,9 +193,9 @@ public class AppDatabase {
      */
     private static boolean checkForRecentRecord(Record newRecord) {
         // ToDo: Add user preference to control this number
-        int CREATE_REACORD_TIME_FRAME_MIN = 15;
+        int CREATE_RECORD_TIME_FRAME_MIN = 15;
         for (Record record: recordList) {
-            if (TimeUnit.MILLISECONDS.toMinutes(newRecord.getTimestamp() - record.getTimestamp()) <= CREATE_REACORD_TIME_FRAME_MIN) {
+            if (TimeUnit.MILLISECONDS.toMinutes(newRecord.getTimestamp() - record.getTimestamp()) <= CREATE_RECORD_TIME_FRAME_MIN) {
                 removeRecord(record.getKey());
                 return false;
             }

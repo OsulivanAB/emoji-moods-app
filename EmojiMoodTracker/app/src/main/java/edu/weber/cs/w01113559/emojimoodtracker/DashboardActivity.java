@@ -140,7 +140,7 @@ public class DashboardActivity extends AppCompatActivity implements
         // Firebase
         auth = FirebaseAuth.getInstance();
         if (GlobalAppDatabase.getAppDatabaseInstance() == null) {
-            GlobalAppDatabase.initializeAppDatabaseInstance(getApplicationContext());
+            GlobalAppDatabase.initializeAppDatabaseInstance();
         }
 
         // View Elements

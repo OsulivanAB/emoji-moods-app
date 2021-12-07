@@ -3,10 +3,8 @@ package edu.weber.cs.w01113559.emojimoodtracker.data.model;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -427,38 +425,14 @@ public abstract class emojiEncoding {
         }
     }
 
-    @NonNull
-    public static List<String> getDecodedEmojiList(@NonNull Context context, @NonNull List<Drawable> emojis){
-        List<String> sEmojiList = new ArrayList<>();
-        for (Drawable emoji : emojis) {
-            sEmojiList.add(decodeEmoji(emoji, context));
-        }
-        return sEmojiList;
-    }
-
-    @NonNull
-    public static List<Drawable> getEncodedEmojiList(@NonNull Context context, @NonNull List<String> emojis){
-        List<Drawable> dEmojiList = new ArrayList<>();
-        for (String emoji : emojis) {
-            dEmojiList.add(encodeEmoji(emoji, context));
-        }
-        return dEmojiList;
-    }
-
     /**
      * Validates a list of strings to make sure they are valid emojis in our list
      * @param emojiList {@link List<String>} list of emoji codes
-     * @return {@link Boolean} true: valide list, false: invalid list.
+     * @return {@link Boolean} true: valid list, false: invalid list.
      */
     public static boolean validateList(Context context, List<String> emojiList) {
         List<String> validEmojis = Arrays.asList(context.getResources().getStringArray(R.array.emoji_hex_codes));
         return validEmojis.containsAll(emojiList);
-    }
-
-    public static String getDescription(Context context, String tag) {
-        List<String> validEmojis = Arrays.asList(context.getResources().getStringArray(R.array.emoji_hex_codes));
-        List<String> emojiDescriptions = Arrays.asList(context.getResources().getStringArray(R.array.emoji_description));
-        return emojiDescriptions.get(validEmojis.indexOf(tag));
     }
 
     public static String getUnicode(Context context, String tag) {

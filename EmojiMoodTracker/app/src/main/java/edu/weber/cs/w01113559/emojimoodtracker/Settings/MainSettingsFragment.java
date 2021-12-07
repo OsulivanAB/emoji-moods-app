@@ -67,7 +67,7 @@ public class MainSettingsFragment extends PreferenceFragmentCompat {
                 emojiList.addAll( (HashSet<String>) newValue);
                 AppDatabase mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
                 if (mDatabase == null) {
-                    mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance(getContext());
+                    mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance();
                 }
                 mDatabase.writeEmojiList(getContext(), emojiList);
 

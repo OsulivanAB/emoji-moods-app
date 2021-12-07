@@ -117,7 +117,7 @@ public class GraphFragment extends Fragment implements AppDatabase.graphFragInte
 
         // Database
         mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
-        if (mDatabase == null) mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance(context);
+        if (mDatabase == null) mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance();
         mDatabase.setInterface(this);
 
         // Chart

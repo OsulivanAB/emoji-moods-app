@@ -22,10 +22,9 @@ public final class GlobalAppDatabase {
 
     /**
      * Instantiates the global {@link AppDatabase} variable.
-     * @param context {@link Context} context for the current activity.
      */
-    public static AppDatabase initializeAppDatabaseInstance(Context context) {
-        return sAppDatabase = new AppDatabase(context);
+    public static AppDatabase initializeAppDatabaseInstance() {
+        return sAppDatabase = new AppDatabase();
     }
 
     /**

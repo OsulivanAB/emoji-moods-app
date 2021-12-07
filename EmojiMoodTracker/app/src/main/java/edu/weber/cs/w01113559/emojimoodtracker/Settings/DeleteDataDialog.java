@@ -30,7 +30,7 @@ public class DeleteDataDialog extends DialogFragment {
                 .setNegativeButton("Delete Forever", (dialogInterface, i) -> {
                     AppDatabase mDatabase = GlobalAppDatabase.getAppDatabaseInstance();
                     if (mDatabase == null) {
-                        mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance(getContext());
+                        mDatabase = GlobalAppDatabase.initializeAppDatabaseInstance();
                     }
                     mDatabase.removeAllRecords();
                 });
