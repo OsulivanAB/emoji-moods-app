@@ -30,7 +30,7 @@ public class LogoutDialog extends DialogFragment {
         builder
                 .setTitle("Confirm Logout")
                 .setMessage("Are you sure you want to Logout?")
-                .setIcon(R.drawable.ic_baseline_question_mark_24)
+//                .setIcon(R.drawable.ic_baseline_question_mark_24)
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dismiss())
                 .setPositiveButton("Logout", (dialogInterface, i) -> {
                     try {

@@ -11,12 +11,21 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorText">#111441</color>
 
-    <color name="primaryColor">#496686</color>
-    <color name="primaryLightColor">#7794b6</color>
-    <color name="primaryDarkColor">#1b3c59</color>
-    <color name="secondaryColor">#498586</color>
-    <color name="secondaryLightColor">#78b5b6</color>
-    <color name="secondaryDarkColor">#175859</color>
+<!--    <color name="primaryColor">#1451a7</color>
+    <color name="primaryLightColor">#587dd9</color>
+    <color name="primaryDarkColor">#002a77</color>
+    <color name="secondaryColor">#149ba7</color>
+    <color name="secondaryLightColor">#5cccd8</color>
+    <color name="secondaryDarkColor">#006c78</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>-->
+
+    <color name="primaryColor">#01579b</color>
+    <color name="primaryLightColor">#4f83cc</color>
+    <color name="primaryDarkColor">#002f6c</color>
+    <color name="secondaryColor">#ffa000</color>
+    <color name="secondaryLightColor">#ffd149</color>
+    <color name="secondaryDarkColor">#c67100</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
 </resources>

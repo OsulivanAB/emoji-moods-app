@@ -146,7 +146,7 @@ public class DashboardActivity extends AppCompatActivity implements
         // View Elements
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         root = binding.getRoot();
-        toolbar = binding.toolbar;
+        toolbar = binding.myToolbar;
         toolbar.setTitle("Record Mood");
 
         // Navigation
@@ -164,7 +164,7 @@ public class DashboardActivity extends AppCompatActivity implements
         binding.graphFAB.setOnClickListener(view -> {
             setGraphFabVisibility(false);
             navController.navigate(R.id.graphFragment, null, options);  // Navigate to Graph Page
-            binding.toolbar.setTitle("Mood Summary Graph");
+            toolbar.setTitle("Mood Summary Graph");
 
 
         });
