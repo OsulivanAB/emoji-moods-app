@@ -4,11 +4,20 @@ public final class GlobalAppDatabase {
 
     private static AppDatabase sAppDatabase = null;
 
+    public static AppDatabase getsAppDatabase() {
+        return sAppDatabase;
+    }
+
+    public static void setsAppDatabase(AppDatabase sAppDatabase) {
+        GlobalAppDatabase.sAppDatabase = sAppDatabase;
+    }
+
     /**
      * Empty constructor - We don't initialize builder because we rely on a null state to let us
      * know the Application's process was killed.
      */
-    private GlobalAppDatabase() { }
+    private GlobalAppDatabase() {
+    }
 
     /**
      * Instantiates the global {@link AppDatabase} variable.

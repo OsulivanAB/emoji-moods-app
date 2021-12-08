@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppDatabase {
 
+    //region Variables
     private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static final FirebaseUser currentUser = mAuth.getCurrentUser();
     private static final String userID = (currentUser != null) ? currentUser.getUid() : null;
@@ -34,13 +35,13 @@ public class AppDatabase {
     private graphFragInterface mCallback;
     //endregion
 
+    //region Writers
     public static void writeUserSettings(Context context, @NonNull List<String> emojis, List<ReminderData> reminders) {
         userSettings.deleteAlarmsForReminders(context);
         Settings _userSettings = new Settings(emojis, reminders);
         _userSettings.scheduleAlarmsForReminders(context);
         mUserSettingsRef.setValue(_userSettings);
     }
-
     //endregion
 
     //region Constructors
@@ -155,6 +156,7 @@ public class AppDatabase {
     public void removeAllRecords() {
         mRecordsRef.removeValue();
     }
+    //endregion
 
     //region Interface
     public interface graphFragInterface {

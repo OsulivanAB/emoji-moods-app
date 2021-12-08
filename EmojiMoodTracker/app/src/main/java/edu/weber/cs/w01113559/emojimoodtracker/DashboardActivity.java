@@ -133,20 +133,7 @@ public class DashboardActivity extends AppCompatActivity implements
                     startActivity(browserIntent);
                 } catch (Exception e) {
                     Log.d(MyApplication.TAG, e.getMessage());
-                }/*
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("plain/text");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.feedback_email_address)});
-                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_email_subject));
-                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback_email_body));
-//                intent.putExtra(Intent.EXTRA_STREAM, attachment); todo: figure out how to attach log
-
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                } else {
-                    Snackbar.make(root, "Sorry, something went wrong.", Snackbar.LENGTH_SHORT).show();
-                }*/
+                }
                 return true;
         }
         return false;
