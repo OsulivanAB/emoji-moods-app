@@ -38,7 +38,7 @@
     <string name="remove_reminder">Remove Reminder</string>
     <string name="customization">Customization</string>
     <string name="notification_settings_summary">Notification settings are managed in device settings.</string>
-    <string name="via_email">via Email</string>
+    <string name="prefernece_summary_submit_feedback">Submit Issue on Github</string>
     <string name="feedback_email_subject">[Feedback] Emoji Mood Tracker App</string>
     <string name="feedback_email_address">emojimoodtracker@gmail.com</string>
     <string name="feedback_email_body">What\'s going on?</string>
