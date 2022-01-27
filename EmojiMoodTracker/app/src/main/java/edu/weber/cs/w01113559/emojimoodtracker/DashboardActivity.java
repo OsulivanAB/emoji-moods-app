@@ -129,7 +129,7 @@ public class DashboardActivity extends AppCompatActivity implements
             case "sendFeedback":
 
                 try {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/AnthonyBahlWeber/emoji-moods-app/issues"));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.feedback_url)));
                     startActivity(browserIntent);
                 } catch (Exception e) {
                     Log.d(MyApplication.TAG, e.getMessage());

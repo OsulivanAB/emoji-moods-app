@@ -42,4 +42,5 @@
     <string name="feedback_email_subject">[Feedback] Emoji Mood Tracker App</string>
     <string name="feedback_email_address">emojimoodtracker@gmail.com</string>
     <string name="feedback_email_body">What\'s going on?</string>
+    <string name="feedback_url">https://github.com/AnthonyBahlWeber/emoji-moods-app/issues</string>
 </resources>
