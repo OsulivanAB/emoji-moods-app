@@ -37,6 +37,8 @@ public class MainSettingsFragment extends PreferenceFragmentCompat {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupNotificationCategory();
+
+        // Apply Emoji2 EmojiSpans
     }
 
     @Override
