@@ -37,6 +37,8 @@ public class MainSettingsFragment extends PreferenceFragmentCompat {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupNotificationCategory();
+
+        // Apply Emoji2 EmojiSpans
     }
 
     @Override
@@ -56,14 +58,17 @@ public class MainSettingsFragment extends PreferenceFragmentCompat {
     private void updateNotificationDependentPreferences(Boolean notificationValue) {
         Preference scheduleReminder = findPreference("scheduleNotification");
         Preference removeReminder = findPreference("removeNotification");
+        Preference notificationSettings = findPreference("notificationSettings");
         if (notificationValue) {
             // Notifications Enabled
             if (scheduleReminder != null) scheduleReminder.setVisible(true);
             if (removeReminder != null) removeReminder.setVisible(true);
+            if (notificationSettings != null) notificationSettings.setVisible(true);
         } else {
             // Notifications disabled
             if (scheduleReminder != null) scheduleReminder.setVisible(false);
             if (removeReminder != null) removeReminder.setVisible(false);
+            if (notificationSettings != null) notificationSettings.setVisible(false);
         }
     }
 
