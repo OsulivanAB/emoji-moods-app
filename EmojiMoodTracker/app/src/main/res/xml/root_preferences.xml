@@ -65,7 +65,7 @@
         <Preference
             app:fragment="edu.weber.cs.w01113559.emojimoodtracker.Settings.MainSettingsFragment"
             app:key="sendFeedback"
-            app:summary="@string/prefernece_summary_submit_feedback"
+            app:summary="Submit Feedback"
             app:title="Send Feedback" />
         <Preference
             app:key="version"
